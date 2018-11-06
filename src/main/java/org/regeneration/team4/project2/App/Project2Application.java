@@ -1,4 +1,4 @@
-package org.regeneration.team4.project2;
+package org.regeneration.team4.project2.App;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Project2Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(Project2Application.class, args);
-	}
+    public static void main(String[] args) {
+
+        SpringApplication.run(Project2Application.class, args);
+
+    }
 }
