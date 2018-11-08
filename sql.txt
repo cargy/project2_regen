@@ -1,0 +1,57 @@
+drop database regen_efka;
+create database regen_efka char set utf8mb4 collate utf8mb4_unicode_ci;
+use regen_efka;
+
+
+drop table if exists account;
+create table account(
+	account_id int unsigned not null auto_increment,
+    username varchar(50) not null unique,
+    password binary(32) not null,
+    primary key(account_id)
+) engine=InnoDB default charset=utf8mb4;
+
+
+drop table if exists doctor;
+create table doctor(
+	doctor_id int unsigned not null auto_increment,
+    firstname varchar(50) not null,
+    lastname varchar(50) not null,
+    specialty varchar(50) not null,
+    slots smallint not null, #default 1 max 4!!
+    phone varchar(15) not null unique,
+    account_id int unsigned not null,
+	primary key (doctor_id),
+    foreign key(account_id) references account(account_id)
+) engine=InnoDB default charset=utf8mb4;
+
+
+drop table if exists citizen;
+create table citizen(
+	citizen_id int unsigned not null auto_increment,
+    ssn varchar(11) not null unique,
+    firstname varchar(50) not null,
+    lastname varchar(50) not null,
+    email varchar(255) not null unique,
+    phone varchar(15) not null unique,
+    account_id int unsigned not null,
+	primary key (citizen_id),
+    foreign key(account_id) references account(account_id)
+) engine=InnoDB default charset=utf8mb4;
+
+
+drop table if exists appointment;
+create table appointment(
+	appointment_id int unsigned not null auto_increment,
+    appointment_date date not null,
+    appointment_time time not null,
+    illness_history text,
+    notes text,
+	doctor_id int unsigned not null,
+    citizen_id int unsigned not null,
+    primary key(appointment_id),
+	foreign key(doctor_id) references doctor(doctor_id),
+	foreign key(citizen_id) references citizen(citizen_id)
+) engine=InnoDB default charset=utf8mb4;
+
+
