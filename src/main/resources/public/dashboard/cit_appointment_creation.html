@@ -26,7 +26,7 @@
 <body>
 
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="doc_search.html">USSI</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="cit_search.html">USSI</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="#">Sign out</a>
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <h2><br>Search</h2>
+            <h2><br>Appointment Creation</h2>
             <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
@@ -61,38 +61,30 @@
             </div>
             <div class="col-md-12 form-group center">
                 <div class="row">
+
                     <div class="col-sm-3"></div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="search">Appointment's Date from:</label>
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"
-                                                                   style="padding: 11px; border: solid 1px #ccc;margin-right: -1px;"></i></span><input
-                                    id="date_added"
-                                    type="text" class="form-control" placeholder="From..." autocomplete="off">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="search">Appointment's Date to:</label>
-                            <div class="input-group date">
-                                <span class="input-group-addon"><i class="fa fa-calendar"
-                                                                   style="padding: 11px; border: solid 1px #ccc;margin-right: -1px;"></i></span><input
-                                    id="date_modified"
-                                    type="text" class="form-control" placeholder="To..." autocomplete="off">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-3"></div>
+
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="search">Search in Illness Briefing:</label>
-                            <input type="text" class="form-control" id="search" placeholder="eg: Migraines..."
-                                   autocomplete="off"><br>
-                            <button type="button" class="btn btn-success" onclick="showSearchResults();">Search</button>
+                            <form action="">
+                                <select>
+                                    <option value="specialty" selected class="form-control">--Select Doctor's
+                                        Specialty--
+                                    </option>
+                                </select>
+                                <select>
+                                    <option value="doctor" selected class="form-control">--Select Doctor--</option>
+                                </select>
+                                <input type="text" id="date" class="form-control" name="app_creation"
+                                       placeholder="Date (yyyy-mm-dd)"><br>
+                                <input type="text" id="time" class="form-control" name="app_creation"
+                                       placeholder="Time (hh:mm)"><br>
+                                <input type="textarea" id="ill_briefing" class="form-control" name="app_creation"
+                                       placeholder="Illness Briefing"><br>
+                                <input type="textarea" id="notes" class="form-control" name="app_creation"
+                                       placeholder="Notes"><br>
+                                <button type="button" class="btn btn-success">Create</button>
+                            </form>
                         </div>
                     </div>
                     <div class="col-sm-3"></div>
@@ -150,6 +142,7 @@
 
 
 
+
 </script>
 
 <script>
@@ -157,6 +150,7 @@
        //post method gia na steiloume ta stoixeia tis anazitisis tou gitrou!
        location.replace('doc_appointments.html');
      }
+
 
 
 

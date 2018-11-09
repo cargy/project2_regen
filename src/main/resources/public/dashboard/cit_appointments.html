@@ -24,7 +24,7 @@
 <body>
 
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="doc_search.html">USSI</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="cit_search.html">USSI</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="#">Sign out</a>
@@ -56,24 +56,36 @@
                                 <td>1,001</td>
                                 <td>Lorem</td>
                                 <td>ipsum</td>
-                                <td><a href="doc_single_appointment.html"><i
-                                        class="fas fa-external-link-alt moreIcon"></i></a>
+                                <td><a href="cit_edit_appointment.html">
+                                    <i class="fas fa-pen moreIcon"></i>
+                                </a>
+                                    <a onclick="confirm('Delete Appointment?')">
+                                        <i class="fas fa-trash-alt moreIcon"></i>
+                                    </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>1,002</td>
                                 <td>amet</td>
                                 <td>ipsum</td>
-                                <td><a href="doc_single_appointment.html"><i
-                                        class="fas fa-external-link-alt moreIcon"></i></a>
+                                <td><a href="cit_edit_appointment.html">
+                                    <i class="fas fa-pen moreIcon"></i>
+                                </a>
+                                    <a onclick="confirm('Delete Appointment?')">
+                                        <i class="fas fa-trash-alt moreIcon"></i>
+                                    </a>
                                 </td>
                             </tr>
                             <tr>
                                 <td>1,003</td>
                                 <td>ipsum</td>
                                 <td>Integer</td>
-                                <td><a href="doc_single_appointment.html"><i
-                                        class="fas fa-external-link-alt moreIcon"></i></a>
+                                <td><a href="cit_edit_appointment.html">
+                                    <i class="fas fa-pen moreIcon"></i>
+                                </a>
+                                    <a onclick="confirm('Delete Appointment?')">
+                                        <i class="fas fa-trash-alt moreIcon"></i>
+                                    </a>
                                 </td>
                             </tr>
                             </tbody>
@@ -90,12 +102,16 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="js/jquery-3.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+<script src="js/jquery-3.js"></script>
 <!-- Include jQuery Popup Overlay -->
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.js"></script>
-
+<!-- 
+<script>
+    function deleteAppointmentFunction(app_id){
+        //delete citizen's selected appointment
+    }
+</script> -->
 
 </body>
 </html>

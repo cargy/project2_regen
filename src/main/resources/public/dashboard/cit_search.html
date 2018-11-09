@@ -26,7 +26,7 @@
 <body>
 
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="doc_search.html">USSI</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="cit_search.html">USSI</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="#">Sign out</a>
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <h2><br>Search</h2>
+            <h2><br>Search Appointments</h2>
             <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6">
@@ -89,9 +89,11 @@
                     <div class="col-sm-3"></div>
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="search">Search in Illness Briefing:</label>
-                            <input type="text" class="form-control" id="search" placeholder="eg: Migraines..."
-                                   autocomplete="off"><br>
+                            <label for="search">Select Doctor's Specialty</label><br>
+                            <select>
+                                <option value="specialty" selected class="form-control">--Select Doctor's Specialty--
+                                </option>
+                            </select><br><br>
                             <button type="button" class="btn btn-success" onclick="showSearchResults();">Search</button>
                         </div>
                     </div>
@@ -150,13 +152,15 @@
 
 
 
+
 </script>
 
 <script>
      function showSearchResults(){
        //post method gia na steiloume ta stoixeia tis anazitisis tou gitrou!
-       location.replace('doc_appointments.html');
+       location.replace('cit_appointments.html');
      }
+
 
 
 
