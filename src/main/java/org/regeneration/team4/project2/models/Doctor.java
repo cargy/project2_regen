@@ -1,10 +1,9 @@
 package org.regeneration.team4.project2.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
-public class Doctor {
+public class Doctor implements Account{
 
     private Long doctorId;
     private String firstname;
@@ -85,7 +84,22 @@ public class Doctor {
                 ", firstname='" + firstname+ '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", phone number='" + phone + '\'' +
+                ", account='" + account + '\'' +
                 '}';
     }
 
+    private Account account;
+    public Account getAccountId(){
+        return account;
+    }
+
+    private String username;
+    public String getUsername() {
+        return username;
+    }
+
+    private String password;
+    public String getPassword() {
+        return password;
+    }
 }
