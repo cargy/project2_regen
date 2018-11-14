@@ -3,7 +3,7 @@ package org.regeneration.team4.project2.models;
 import javax.persistence.*;
 
 @Entity
-public class Doctor implements Account{
+public class Doctor {
 
     private Long doctorId;
     private String firstname;
@@ -14,7 +14,7 @@ public class Doctor implements Account{
     private Specialty specialtyId;
     @OneToOne
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
-    private Account accountID;
+    private Account accountId;
 
     public Doctor(Long doctorId, String firstname, String lastname, String phone, Specialty specialtyId, Account accountID) {
         this.doctorId = doctorId;
@@ -22,7 +22,7 @@ public class Doctor implements Account{
         this.lastname = lastname;
         this.phone = phone;
         this.specialtyId = specialtyId;
-        this.accountID = accountID;
+        this.accountId = accountID;
     }
 
     public Doctor() {}
@@ -69,12 +69,12 @@ public class Doctor implements Account{
         this.specialtyId = specialtyId;
     }
 
-    public Account getAccountID() {
-        return accountID;
+    public Account getAccountId() {
+        return accountId;
     }
 
-    public void setAccountID(Account accountID) {
-        this.accountID = accountID;
+    public void setAccountId(Account accountId) {
+        this.accountId = accountId;
     }
 
     @Override
@@ -84,14 +84,10 @@ public class Doctor implements Account{
                 ", firstname='" + firstname+ '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", phone number='" + phone + '\'' +
-                ", account='" + account + '\'' +
+                ", account='" + accountId + '\'' +
                 '}';
     }
 
-    private Account account;
-    public Account getAccountId(){
-        return account;
-    }
 
     private String username;
     public String getUsername() {
