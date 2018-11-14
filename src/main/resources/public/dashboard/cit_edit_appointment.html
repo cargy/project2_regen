@@ -29,7 +29,7 @@
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="cit_search.html">USSI</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <a class="nav-link" href="#" id="logoutButton">Sign out</a>
         </li>
     </ul>
 </nav>
@@ -99,7 +99,6 @@
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-
 <script>
     var fromTimeInput = $('#date_added');
     var toTimeInput = $('#date_modified');
@@ -128,12 +127,6 @@
     toTimeInput.on("changeDate", function (e) {
         fromTimeInput.datepicker('setEndDate', e.date);
     });
-
-
-
-
-
-
 </script>
 
 <script>
