@@ -11,6 +11,6 @@ public class MainController {
     @GetMapping("/dashboard")
     public String dashboard(Model model){
         //model.addAttribute("name", name);
-        return "doc_search";
+        return "index";
     }
 }

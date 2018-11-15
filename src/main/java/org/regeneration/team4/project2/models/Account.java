@@ -9,7 +9,8 @@ public class Account {
     String username;
     String password;
 
-    public Account(){}
+    public Account() {
+    }
 
     public Account(Long accountId, String username, String password) {
         this.accountId = accountId;
@@ -39,5 +40,13 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + accountId +
+                ", username='" + username + '\'' +
+                '}';
     }
 }

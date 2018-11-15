@@ -10,7 +10,7 @@ public class Doctor {
     private String lastname;
     private String phone;
     @ManyToOne
-    @JoinColumn(name="specialty_id", referencedColumnName = "specialty_id")
+    @JoinColumn(name = "specialty_id", referencedColumnName = "specialty_id")
     private Specialty specialtyId;
     @OneToOne
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
@@ -25,7 +25,8 @@ public class Doctor {
         this.accountId = accountID;
     }
 
-    public Doctor() {}
+    public Doctor() {
+    }
 
     @Id
     @GeneratedValue
@@ -81,7 +82,7 @@ public class Doctor {
     public String toString() {
         return "Doctor{" +
                 "id=" + doctorId +
-                ", firstname='" + firstname+ '\'' +
+                ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", phone number='" + phone + '\'' +
                 ", account='" + accountId + '\'' +
@@ -90,11 +91,13 @@ public class Doctor {
 
 
     private String username;
+
     public String getUsername() {
         return username;
     }
 
     private String password;
+
     public String getPassword() {
         return password;
     }

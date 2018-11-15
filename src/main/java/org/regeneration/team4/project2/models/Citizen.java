@@ -17,7 +17,8 @@ public class Citizen {
     @JoinColumn(name = "account_id", referencedColumnName = "account_id")
     private Account accountId;
 
-    public Citizen(){}
+    public Citizen() {
+    }
 
     public Citizen(Long citizenId, String ssn, String firstname, String lastname, String email, String phone, Account accountId) {
         this.citizenId = citizenId;
@@ -89,7 +90,7 @@ public class Citizen {
     public String toString() {
         return "Citizen{" +
                 "id=" + citizenId +
-                ", firstname='" + firstname+ '\'' +
+                ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", phone number='" + phone + '\'' +
@@ -99,11 +100,13 @@ public class Citizen {
 
 
     private String username;
+
     public String getUsername() {
         return username;
     }
 
     private String password;
+
     public String getPassword() {
         return password;
     }

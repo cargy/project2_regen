@@ -14,11 +14,11 @@ public class Appointment {
     private String notes;
 
     @ManyToOne
-    @JoinColumn(name="doctor_id", referencedColumnName = "doctor_id")
+    @JoinColumn(name = "doctor_id", referencedColumnName = "doctor_id")
     private Doctor doctor_id;
 
     @ManyToOne
-    @JoinColumn(name="citizen_id", referencedColumnName = "citizen_id")
+    @JoinColumn(name = "citizen_id", referencedColumnName = "citizen_id")
     private Citizen citizen_id;
 
     public Appointment() {
@@ -89,16 +89,17 @@ public class Appointment {
     public void setCitizen_id(Citizen citizen_id) {
         this.citizen_id = citizen_id;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Appointment{" +
-                "id="+ appointmentId +
-                ", appointment date='" + date + '\''+
-                ", time='" + time + '\''+
-                ", illness history='" + illnessHistory + '\''+
-                ", notes='" + notes + '\''+
-                ", citizen id='" + citizen_id + '\''+
-                ", doctor id='" + doctor_id + '\''+
+                "id=" + appointmentId +
+                ", appointment date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", illness history='" + illnessHistory + '\'' +
+                ", notes='" + notes + '\'' +
+                ", citizen id='" + citizen_id + '\'' +
+                ", doctor id='" + doctor_id + '\'' +
                 '}';
     }
 }
