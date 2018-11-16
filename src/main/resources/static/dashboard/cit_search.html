@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/favicon.ico">
+
+    <title>USSI</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/solid.css"
+          integrity="sha384-rdyFrfAIC05c5ph7BKz3l5NG5yEottvO/DQ0dCrwD8gzeQDjYBHNr1ucUpQuljos" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/fontawesome.css"
+          integrity="sha384-u5J7JghGz0qUrmEsWzBQkfvc8nK3fUT7DCaQzNQ+q4oEXhGSx+P2OqjWsfIRB8QT" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="cit_search.html">USSI</a>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="#">Sign out</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        <main role="main" class="col-md-12 ml-sm-auto  px-4 center">
+
+            <h2><br>Search Appointments</h2>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6">
+                    <hr>
+                </div>
+                <div class="col-sm-3"></div>
+            </div>
+            <div class="col-md-12 form-group center">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="search">Appointment's Date from:</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"
+                                                                   style="padding: 11px; border: solid 1px #ccc;margin-right: -1px;"></i></span><input
+                                    id="date_added"
+                                    type="text" class="form-control" placeholder="From..." autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="search">Appointment's Date to:</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"
+                                                                   style="padding: 11px; border: solid 1px #ccc;margin-right: -1px;"></i></span><input
+                                    id="date_modified"
+                                    type="text" class="form-control" placeholder="To..." autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="search">Select Doctor's Specialty</label><br>
+                            <select>
+                                <option value="specialty" selected class="form-control">--Select Doctor's Specialty--
+                                </option>
+                            </select><br><br>
+                            <button type="button" class="btn btn-success" onclick="showSearchResults();">Search</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+
+<script>
+    var fromTimeInput = $('#date_added');
+    var toTimeInput = $('#date_modified');
+    var fromTime = fromTimeInput.val();
+    var toTime = toTimeInput.val();
+
+    fromTimeInput.datepicker({
+        format: 'yyyy-mm-dd',
+        keyboardNavigation : false,
+        forceParse : false,
+        calendarWeeks : true,
+        autoclose : true,
+        endDate: toTime
+    });
+    toTimeInput.datepicker({
+        format: 'yyyy-mm-dd',
+        keyboardNavigation : false,
+        forceParse : false,
+        calendarWeeks : true,
+        autoclose : true,
+        startDate: fromTime
+    });
+    fromTimeInput.on("changeDate", function (e) {
+        toTimeInput.datepicker('setStartDate', e.date);
+    });
+    toTimeInput.on("changeDate", function (e) {
+        fromTimeInput.datepicker('setEndDate', e.date);
+    });
+
+
+
+
+
+
+</script>
+
+<script>
+     function showSearchResults(){
+       //post method gia na steiloume ta stoixeia tis anazitisis tou gitrou!
+       location.replace('cit_appointments.html');
+     }
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

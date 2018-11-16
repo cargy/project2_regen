@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReGeneration | EFKA | Log in</title>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="css/style.css" rel="stylesheet" id="custom-css">
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/authentication.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+<div class="wrapper" style="background-image: linear-gradient(to right top, #051937, #004d83, #0088a8, #00c38a, #1cf613);">
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img src="images/logo.png" style="margin: 40px;
+    width: 110px;
+    -webkit-filter: drop-shadow(0px 6px 3px rgba(0,0,0,0.6)) brightness(0.3);" id="icon" alt="User Icon"/>
+        </div>
+
+        <!-- Login Form -->
+        <form>
+            <input type="text" class="fadeIn second" id="username" name="username" placeholder="Username">
+            <input type="password" class="fadeIn third" id="password" name="password" placeholder="Password">
+   	    <input type="button" class="fadeIn fourth"  value="Login" onclick="myLogin(username,password);">
+        </form>
+
+        <!-- Footer -->
+        <div id="formFooter">
+            <a class="underlineHover" href="index.html">Back</a>&nbsp;&nbsp;|&nbsp;
+            <a class="underlineHover" href="register.html">Register</a>
+        </div>
+
+    </div>
+</div>
+</div>
+</body>
+</html>
