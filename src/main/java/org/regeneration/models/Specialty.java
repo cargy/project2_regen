@@ -22,27 +22,15 @@ public class Specialty implements Serializable {
     @Column(name = "specialty", length = 50)
     private String specialty;
 
-    @OneToMany(mappedBy = "specialty")
-    private Set<Doctor> doctors = new HashSet<>();
+    @OneToMany(mappedBy = "specialty", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Doctor> doctors;
 
     public Specialty() {
-    }
-
-    public Specialty(@Size(max = 50) String specialty) {
-        this.specialty = specialty;
     }
 
     public Specialty(@Size(max = 50) String specialty, Set<Doctor> doctors) {
         this.specialty = specialty;
         this.doctors = doctors;
-    }
-
-    public Long getSpecialtyId() {
-        return specialtyId;
-    }
-
-    public void setSpecialtyId(Long specialtyId) {
-        this.specialtyId = specialtyId;
     }
 
     public String getSpecialty() {

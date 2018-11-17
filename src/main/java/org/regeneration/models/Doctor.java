@@ -36,56 +36,27 @@ public class Doctor implements Serializable {
     @Column(name = "phone", length = 10, nullable = false, unique = true)
     private String phone;
 
-    @ManyToOne(cascade=CascadeType.DETACH)
-    @JsonIgnoreProperties("doctors")
-    private Specialty specialty;
-
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "doctor")
-    private Set<Appointment> appointments = new HashSet<>();
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Appointment> appointments;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "specialty_id")
+    private Specialty specialty;
 
     public Doctor() {
     }
 
-    public Doctor(@NotNull @Size(max = 50) String firstname, @NotNull @Size(max = 50) String lastname, @NotNull @Size(max = 10) String phone) {
+    public Doctor(@NotNull @Size(max = 50) String firstname, @NotNull @Size(max = 50) String lastname, @NotNull @Size(max = 10) String phone, User user, Set<Appointment> appointments, Specialty specialty) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone = phone;
-    }
-
-    public Doctor(@NotNull @Size(max = 50) String firstname, @NotNull @Size(max = 50) String lastname, @NotNull @Size(max = 10) String phone, Specialty specialty, User user) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.specialty = specialty;
-        this.user = user;
-    }
-
-    public Doctor(@NotNull @Size(max = 50) String firstname, @NotNull @Size(max = 50) String lastname, @NotNull @Size(max = 10) String phone, User user) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.user = user;
-    }
-
-    public Doctor(@NotNull @Size(max = 50) String firstname, @NotNull @Size(max = 50) String lastname, @NotNull @Size(max = 10) String phone, Specialty specialty, User user, Set<Appointment> appointments) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phone = phone;
-        this.specialty = specialty;
         this.user = user;
         this.appointments = appointments;
-    }
-
-    public Long getDoctorId() {
-        return DoctorId;
-    }
-
-    public void setDoctorId(Long doctorId) {
-        DoctorId = doctorId;
+        this.specialty = specialty;
     }
 
     public String getFirstname() {
@@ -112,14 +83,6 @@ public class Doctor implements Serializable {
         this.phone = phone;
     }
 
-    public Specialty getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(Specialty specialty) {
-        this.specialty = specialty;
-    }
-
     public User getUser() {
         return user;
     }
@@ -134,5 +97,13 @@ public class Doctor implements Serializable {
 
     public void setAppointments(Set<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    public Specialty getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(Specialty specialty) {
+        this.specialty = specialty;
     }
 }

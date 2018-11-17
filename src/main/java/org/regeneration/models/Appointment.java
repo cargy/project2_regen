@@ -35,23 +35,13 @@ public class Appointment implements Serializable {
     @Column(name = "notes")
     private String notes;
 
-    @ManyToOne(cascade=CascadeType.DETACH)
-    @JsonIgnoreProperties("appointments")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @ManyToOne(cascade=CascadeType.DETACH)
-    @JsonIgnoreProperties("appointments")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "citizen_id")
     private Citizen citizen;
-
-    public Appointment() {
-    }
-
-    public Appointment(@NotNull @Size(max = 50) String date, @NotNull @Size(max = 50) String time, String illnessHistory, String notes) {
-        this.date = date;
-        this.time = time;
-        this.illnessHistory = illnessHistory;
-        this.notes = notes;
-    }
 
     public Appointment(@NotNull @Size(max = 50) String date, @NotNull @Size(max = 50) String time, String illnessHistory, String notes, Doctor doctor, Citizen citizen) {
         this.date = date;
@@ -62,12 +52,7 @@ public class Appointment implements Serializable {
         this.citizen = citizen;
     }
 
-    public Long getAppointmentId() {
-        return appointmentId;
-    }
-
-    public void setAppointmentId(Long appointmentId) {
-        this.appointmentId = appointmentId;
+    public Appointment() {
     }
 
     public String getDate() {

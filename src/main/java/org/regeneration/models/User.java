@@ -26,21 +26,20 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
+    @OneToOne(mappedBy = "user")
+    private Doctor doctor;
+
+    @OneToOne(mappedBy = "user")
+    private Citizen citizen;
+
     public User() {
     }
 
-
-    public User(@NotNull @Size(max = 50) String username, String password) {
+    public User(@NotNull @Size(max = 50) String username, String password, Doctor doctor, Citizen citizen) {
         this.username = username;
         this.password = password;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
+        this.doctor = doctor;
+        this.citizen = citizen;
     }
 
     public String getUsername() {
@@ -57,5 +56,21 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    public Citizen getCitizen() {
+        return citizen;
+    }
+
+    public void setCitizen(Citizen citizen) {
+        this.citizen = citizen;
     }
 }

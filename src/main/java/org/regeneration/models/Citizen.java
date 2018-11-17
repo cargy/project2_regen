@@ -28,7 +28,7 @@ public class Citizen implements Serializable {
     private String lastname;
 
     @NotNull
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", length = 50, nullable = false, unique = true)
     private String email;
 
     @NotNull
@@ -41,30 +41,14 @@ public class Citizen implements Serializable {
     @Column(name = "ssn", length = 11, nullable = false, unique = true)
     private String ssn;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "citizen")
-    private Set<Appointment> appointments = new HashSet<>();
+    @OneToMany(mappedBy = "citizen", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Appointment> appointments;
 
-    public Citizen(){}
-
-    public Citizen(@NotNull String firstname, @NotNull String lastname, @NotNull String email, @NotNull @Size(max = 10) String phone, @NotNull @Size(max = 11) String ssn) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.phone = phone;
-        this.ssn = ssn;
-    }
-
-    public Citizen(@NotNull String firstname, @NotNull String lastname, @NotNull String email, @NotNull @Size(max = 10) String phone, @NotNull @Size(max = 11) String ssn, User user) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.phone = phone;
-        this.ssn = ssn;
-        this.user = user;
+    public Citizen() {
     }
 
     public Citizen(@NotNull String firstname, @NotNull String lastname, @NotNull String email, @NotNull @Size(max = 10) String phone, @NotNull @Size(max = 11) String ssn, User user, Set<Appointment> appointments) {
@@ -75,14 +59,6 @@ public class Citizen implements Serializable {
         this.ssn = ssn;
         this.user = user;
         this.appointments = appointments;
-    }
-
-    public Long getCitizenId() {
-        return citizenId;
-    }
-
-    public void setCitizenId(Long citizenId) {
-        this.citizenId = citizenId;
     }
 
     public String getFirstname() {
