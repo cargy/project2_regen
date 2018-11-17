@@ -43,13 +43,29 @@ public class Appointment implements Serializable {
     @JoinColumn(name = "citizen_id")
     private Citizen citizen;
 
-    public Appointment(@NotNull @Size(max = 50) String date, @NotNull @Size(max = 50) String time, String illnessHistory, String notes, Doctor doctor, Citizen citizen) {
+    public Appointment(@NotNull @Size(max = 50) String date, @NotNull @Size(max = 50) String time, String illnessHistory, String notes, Doctor doctor) {
         this.date = date;
         this.time = time;
         this.illnessHistory = illnessHistory;
         this.notes = notes;
         this.doctor = doctor;
+
+    }
+
+    public Appointment(@NotNull @Size(max = 50) String date, @NotNull @Size(max = 50) String time, String illnessHistory, String notes, Citizen citizen) {
+        this.date = date;
+        this.time = time;
+        this.illnessHistory = illnessHistory;
+        this.notes = notes;
         this.citizen = citizen;
+    }
+
+    public Long getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(Long appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public Appointment() {

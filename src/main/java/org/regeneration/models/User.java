@@ -35,11 +35,26 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(@NotNull @Size(max = 50) String username, String password, Doctor doctor, Citizen citizen) {
+    public User(@NotNull @Size(max = 50) String username, String password, Doctor doctor) {
         this.username = username;
         this.password = password;
         this.doctor = doctor;
+
+    }
+
+    public User(@NotNull @Size(max = 50) String username, String password, Citizen citizen) {
+        this.username = username;
+        this.password = password;
         this.citizen = citizen;
+    }
+
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {

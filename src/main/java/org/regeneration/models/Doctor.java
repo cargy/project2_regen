@@ -59,6 +59,14 @@ public class Doctor implements Serializable {
         this.specialty = specialty;
     }
 
+    public Long getDoctorId() {
+        return DoctorId;
+    }
+
+    public void setDoctorId(Long doctorId) {
+        DoctorId = doctorId;
+    }
+
     public String getFirstname() {
         return firstname;
     }

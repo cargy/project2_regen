@@ -51,6 +51,14 @@ public class Citizen implements Serializable {
     public Citizen() {
     }
 
+    public Long getCitizenId() {
+        return citizenId;
+    }
+
+    public void setCitizenId(Long citizenId) {
+        this.citizenId = citizenId;
+    }
+
     public Citizen(@NotNull String firstname, @NotNull String lastname, @NotNull String email, @NotNull @Size(max = 10) String phone, @NotNull @Size(max = 11) String ssn, User user, Set<Appointment> appointments) {
         this.firstname = firstname;
         this.lastname = lastname;
