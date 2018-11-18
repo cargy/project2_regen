@@ -33,6 +33,10 @@ public class Specialty implements Serializable {
         this.doctors = doctors;
     }
 
+    public Specialty(@Size(max = 50) String specialty) {
+        this.specialty = specialty;
+    }
+
     public String getSpecialty() {
         return specialty;
     }

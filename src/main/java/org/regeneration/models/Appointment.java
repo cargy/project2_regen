@@ -52,6 +52,13 @@ public class Appointment implements Serializable {
         this.citizen = citizen;
     }
 
+    public Appointment(@NotNull @Size(max = 50) String date, @NotNull @Size(max = 50) String time, String illnessHistory, String notes) {
+        this.date = date;
+        this.time = time;
+        this.illnessHistory = illnessHistory;
+        this.notes = notes;
+    }
+
     public Appointment() {
     }
 

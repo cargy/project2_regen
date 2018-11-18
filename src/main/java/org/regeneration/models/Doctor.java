@@ -59,6 +59,21 @@ public class Doctor implements Serializable {
         this.specialty = specialty;
     }
 
+    public Doctor(@NotNull @Size(max = 50) String firstname, @NotNull @Size(max = 50) String lastname, @NotNull @Size(max = 10) String phone, User user, Specialty specialty) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.user = user;
+        this.specialty = specialty;
+    }
+
+    public Doctor(@NotNull @Size(max = 50) String firstname, @NotNull @Size(max = 50) String lastname, @NotNull @Size(max = 10) String phone, User user) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.user = user;
+    }
+
     public String getFirstname() {
         return firstname;
     }

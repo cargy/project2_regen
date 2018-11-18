@@ -42,6 +42,11 @@ public class User implements Serializable {
         this.citizen = citizen;
     }
 
+    public User(@NotNull @Size(max = 50) String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public String getUsername() {
         return username;
     }

@@ -61,6 +61,15 @@ public class Citizen implements Serializable {
         this.appointments = appointments;
     }
 
+    public Citizen(@NotNull String firstname, @NotNull String lastname, @NotNull String email, @NotNull @Size(max = 10) String phone, @NotNull @Size(max = 11) String ssn, User user) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.phone = phone;
+        this.ssn = ssn;
+        this.user = user;
+    }
+
     public String getFirstname() {
         return firstname;
     }
