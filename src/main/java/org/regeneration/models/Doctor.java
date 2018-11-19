@@ -136,4 +136,12 @@ public class Doctor implements Serializable {
     public void setSpecialty(Specialty specialty) {
         this.specialty = specialty;
     }
+
+    public Long getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(Long doctorId) {
+        this.doctorId = doctorId;
+    }
 }
