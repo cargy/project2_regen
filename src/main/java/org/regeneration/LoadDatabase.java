@@ -85,10 +85,24 @@ public class LoadDatabase {
 //            logger.info("Preloading " + appointmentRepository.save(appointment));
 //            logger.info("Preloading " + appointmentRepository.save(appointment1));
 
-
             Optional<Doctor> d = doctorRepository.findById(4L);
+            Doctor delDoctor = d.get();
+            User delUser = d.get().getUser();
+            Specialty notDeleteSpecialty = delDoctor.getSpecialty();
 
-            doctorRepository.delete(d.get());
+            delDoctor.setSpecialty(null);
+            delDoctor.setAppointments(null);
+            doctorRepository.save(delDoctor);
+            doctorRepository.delete(delDoctor);
+
+            if (userRepository.findById(delUser.getUserId()).isPresent()) {
+                throw new AssertionError("Failed to delete User: " + delUser.getUserId());
+            }
+
+            if (doctorRepository.findById(delDoctor.getDoctorId()).isPresent()) {
+                throw new AssertionError("Failed to delete Doctor: " + delDoctor.getDoctorId());
+            }
+
 //            doctorRepository.deleteAll();
 //            appointmentRepository.delete(appointment);
 //            specialtyRepository.delete(specialty);

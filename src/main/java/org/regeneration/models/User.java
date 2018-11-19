@@ -78,4 +78,12 @@ public class User implements Serializable {
     public void setCitizen(Citizen citizen) {
         this.citizen = citizen;
     }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }
