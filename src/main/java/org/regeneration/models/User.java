@@ -105,4 +105,13 @@ public class User implements Serializable {
     public Role getRole() {return role;}
 
     public void setRole(Role role) {this.role = role;}
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+   }
+
 }
