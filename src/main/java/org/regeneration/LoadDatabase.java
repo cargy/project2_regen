@@ -25,9 +25,9 @@ public class LoadDatabase {
                                    SpecialtyRepository specialtyRepository,
                                    CitizenRepository citizenRepository) {
         return args -> {
-            User userGuest  = new User("user",  passwordEncoder.encode("user" ));
+            User userGuest  = new User("user",  passwordEncoder.encode("userPassword" ));
             User userGuest1 = new User("user1", passwordEncoder.encode("user1"));
-            User userGuest2 = new User("user2", passwordEncoder.encode("user2"));
+            User userGuest2 = new User("user2", passwordEncoder.encode("user2Password"));
             User userGuest3 = new User("user3", passwordEncoder.encode("user3"));
             User userGuest4 = new User("user4", passwordEncoder.encode("user4"));
 
@@ -95,7 +95,14 @@ public class LoadDatabase {
             doctorRepository.save(delDoctor);
             doctorRepository.delete(delDoctor);
 
-            doctorRepository.delete(d.get());
+            if (userRepository.findById(delUser.getUserId()).isPresent()) {
+                throw new AssertionError("Failed to delete User: " + delUser.getUserId());
+            }
+
+            if (doctorRepository.findById(delDoctor.getDoctorId()).isPresent()) {
+                throw new AssertionError("Failed to delete Doctor: " + delDoctor.getDoctorId());
+            }
+
 //            doctorRepository.deleteAll();
 //            appointmentRepository.delete(appointment);
 //            specialtyRepository.delete(specialty);
