@@ -1,5 +1,6 @@
 package org.regeneration.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -59,7 +60,7 @@ public class Appointment implements Serializable {
         this.time = time;
         this.illnessHistory = illnessHistory;
         this.notes = notes;
-}
+    }
 
     public Appointment() {
     }
