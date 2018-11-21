@@ -1,5 +1,6 @@
 package org.regeneration.controllers;
 
+import org.regeneration.exceptions.AppointmentNotFoundException;
 import org.regeneration.exceptions.DoctorWithSelectedSpecilatyNotFoundException;
 import org.regeneration.exceptions.SpecialtyNotFoundException;
 import org.regeneration.models.Appointment;
@@ -11,10 +12,8 @@ import org.regeneration.repositories.CitizenRepository;
 import org.regeneration.repositories.DoctorRepository;
 import org.regeneration.repositories.SpecialtyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,15 +62,38 @@ public class CitizenController {
         if (specialtyOptional.isPresent()) {
             Specialty specialty = specialtyOptional.get();
             doctors = doctorRepository.findBySpecialty(specialty);
-            if(!doctors.isEmpty()){
-            return doctors;}
-            else{
+            if (!doctors.isEmpty()) {
+                return doctors;
+            } else {
                 throw new DoctorWithSelectedSpecilatyNotFoundException(specialty.getSpecialty());
             }
         } else {
             throw new SpecialtyNotFoundException(specialtyId);
         }
     }
+
+    @GetMapping("/api/citizen/appointment/{id}")
+    public Appointment getAppointmentById(@PathVariable Long id) {
+        return appointmentRepository.findById(id)
+                .orElseThrow(() -> new AppointmentNotFoundException(id));
+
+    }
+
+
+    @DeleteMapping("/api/citizen/appointment/{appointmentId}")
+    public void deleteAppointmentById(@PathVariable Long appointmentId) {
+        getAppointmentById(appointmentId);
+        Optional<Appointment> optionalApp = appointmentRepository.findById(appointmentId);
+        Appointment appointmentToDelete = optionalApp.get();
+        if (optionalApp.isPresent()) {
+            appointmentToDelete.getDoctor().getAppointments().remove(appointmentToDelete);
+            appointmentToDelete.getCitizen().getAppointments().remove(appointmentToDelete);
+
+            appointmentRepository.save(appointmentToDelete);
+        }
+        appointmentRepository.deleteById(appointmentId);
+    }
+
 
 }
 
