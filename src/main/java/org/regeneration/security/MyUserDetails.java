@@ -18,9 +18,9 @@ public class MyUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(user.getRole()==Role.DOCTOR){
-            return Collections.singletonList(new SimpleGrantedAuthority(String.valueOf(Role.DOCTOR)));
+            return Collections.singletonList(new SimpleGrantedAuthority(Role.DOCTOR.toString()));
         }else if(user.getRole()==Role.CITIZEN){
-            return Collections.singletonList(new SimpleGrantedAuthority(String.valueOf(Role.CITIZEN)));
+            return Collections.singletonList(new SimpleGrantedAuthority(Role.CITIZEN.toString()));
         }else{
             return null;
         }

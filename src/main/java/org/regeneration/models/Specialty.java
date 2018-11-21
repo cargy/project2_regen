@@ -1,5 +1,8 @@
 package org.regeneration.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -22,6 +25,7 @@ public class Specialty implements Serializable {
     @Column(name = "specialty", length = 50)
     private String specialty;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "specialty", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Doctor> doctors;
 
@@ -35,6 +39,14 @@ public class Specialty implements Serializable {
 
     public Specialty(@Size(max = 50) String specialty) {
         this.specialty = specialty;
+    }
+
+    public Long getSpecialtyId() {
+        return specialtyId;
+    }
+
+    public void setSpecialtyId(Long specialtyId) {
+        this.specialtyId = specialtyId;
     }
 
     public String getSpecialty() {

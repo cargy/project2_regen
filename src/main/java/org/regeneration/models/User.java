@@ -1,6 +1,10 @@
 package org.regeneration.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.regeneration.security.Role;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,9 +30,14 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
+    private Role role;
+
+    @JsonBackReference
     @OneToOne(mappedBy = "user")
     private Doctor doctor;
 
+    @JsonBackReference
     @OneToOne(mappedBy = "user")
     private Citizen citizen;
 
@@ -45,6 +54,14 @@ public class User implements Serializable {
     public User(@NotNull @Size(max = 50) String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -82,12 +99,4 @@ public class User implements Serializable {
     public Role getRole() {return role;}
 
     public void setRole(Role role) {this.role = role;}
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 }
