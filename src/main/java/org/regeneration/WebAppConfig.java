@@ -3,6 +3,7 @@ package org.regeneration;
 import org.regeneration.security.CustomAccessDeniedHandler;
 import org.regeneration.security.MySavedRequestAwareAuthenticationSuccessHandler;
 import org.regeneration.security.RestAuthenticationEntryPoint;
+import org.regeneration.security.Role;
 import org.regeneration.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -59,7 +60,8 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/api/**").authenticated()
-                //.antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/doctor/**").hasRole(String.valueOf(Role.DOCTOR))
+                .antMatchers("/api/citizen/**").hasRole(String.valueOf(Role.CITIZEN))
                 .and()
                 .formLogin()
                 .successHandler(mySuccessHandler)

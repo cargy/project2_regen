@@ -1,6 +1,8 @@
 package org.regeneration.models;
 
 
+import org.regeneration.security.Role;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,6 +27,9 @@ public class User implements Serializable {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "role")
+    private Role role;
 
     @OneToOne(mappedBy = "user")
     private Doctor doctor;
@@ -78,4 +83,8 @@ public class User implements Serializable {
     public void setCitizen(Citizen citizen) {
         this.citizen = citizen;
     }
+
+    public Role getRole() {return role;}
+
+    public void setRole(Role role) {this.role = role;}
 }

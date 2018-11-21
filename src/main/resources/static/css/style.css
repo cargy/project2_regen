@@ -1,6 +1,3 @@
-
-/* BASIC */
-
 html {
   background-color: #56baed;
 }
@@ -27,6 +24,11 @@ h2 {
   color: #cccccc;
 }
 
+p.error_form {
+  font-size: 12px;
+  font-style: italic;
+  color: #888888;
+}
 
 
 /* STRUCTURE */
@@ -39,6 +41,14 @@ h2 {
   width: 100%;
   min-height: 100%;
   padding: 20px;
+}
+
+#myWrapper {
+  background-image: radial-gradient(circle, #a3efff, #73b8d2, #4983a4, #255276, #042548);
+}
+
+#logo {
+  margin: 40px;width: 110px;-webkit-filter: drop-shadow(0px 6px 3px rgba(0,0,0,0.6)) brightness(0.3);
 }
 
 #formContent {

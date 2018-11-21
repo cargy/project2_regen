@@ -1,0 +1,41 @@
+body {
+  padding-top: 50px;
+  padding-top: 4.5rem;
+
+}
+
+.myTemplate {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.myTemplate2 {
+  padding: 40px 300px;
+  text-align: center;
+}
+
+.myDate {
+	width: -webkit-fill-available; !important
+    border: 1px solid #ccc; !important
+    border-radius: 5px; !important
+}
+
+.myDateParent{
+	width: 100%;!important
+}
+
+input[type="search"]{
+	border-radius: 5px;!important
+    border: 1px solid #ccc;!important
+}
+
+select{
+	border-radius: 5px;!important
+}
+
+.verticalRule-left {
+	height: 150px;
+    border-left: 1px solid;
+    border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(140, 140, 140) 48%, rgba(255, 255, 255, 0) 100%);
+    border-image-slice: 1;
+}
