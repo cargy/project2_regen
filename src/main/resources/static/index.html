@@ -1,36 +1,56 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>ReGeneration | EFKA</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="css/style.css" rel="stylesheet" id="custom-css">
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
-</head>
-<body>
-<div class="wrapper" style="background-image: linear-gradient(to right top, #051937, #004d83, #0088a8, #00c38a, #1cf613);">
-<div class="wrapper fadeInDown">
-    <div id="formContent">
-        <!-- Tabs Titles -->
+	<head>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<meta content='ReGeneration Academy // Java4web-SKG2018 // Chara Sarianidou - Konstantina Kaffe - Panagiotis Loukas - Dimitris Apostolou' name='description'/>
+		<meta name="theme-color" content="#373737">
+		
+		<link rel="shortcut icon" href="images/favicon.ico">  
+		
+		<title>USSI | ReGeneration Academy | Java4web-SKG2018</title>
+		
+		<!-- Styles/css -->
+		<link href="css/style.css" rel="stylesheet" id="custom-css">
+		<link href="css/libraries/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-        <!-- Icon -->
-        <div class="fadeIn first">
-            <img src="images/logo.png" style="margin: 40px;width: 110px;-webkit-filter: drop-shadow(0px 6px 3px rgba(0,0,0,0.6)) brightness(0.3);" id="icon" alt="Logo"/>
-        </div>
+		<!-- Javascript/js -->
+		<script src="js/libraries/jquery.min.js"></script>
+		<script src="js/libraries/bootstrap.min.js"></script>
 
-        <!-- Select Func -->
-        <input type="submit" class="fadeIn first" id="loginButton" value="log in" onclick="location.href='login.html'">
-        <input type="submit" class="fadeIn second" id="registerButton" value="Register"
-               onclick="location.href='register.html'">
+	</head>
+	<body>
+
+		<div class="wrapper" id="myWrapper">
+			<div class="wrapper fadeInDown">
+				<div id="formContent">
+
+					<!-- Logo -->
+					<div class="fadeIn first">
+						<a href="#">
+							<img src="images/logo.png" id="logo" alt="USSI"/>
+						</a>
+					</div>
+
+					<!-- Select Func -->
+					<input type="submit" class="fadeIn first" id="loginButton" value="Log in" onclick="location.href='users/login.html'">
+					<input type="submit" class="fadeIn second" id="registerButton" value="Register"
+						   onclick="location.href='users/register.html'">
 
 
-        <!-- Project Info -->
-        <div id="formFooter">
-            <a class="underlineHover" href="https://github.com/dimitris-ap/project2_regen" target="_blank"><img src="images/github.ico" width="16px"/><span> Project Info</span></a>
-        </div>
-    </div>
-</div>
-</div>
-</body>
+					<!-- Project Info -->
+					<div id="formFooter">
+						<a class="underlineHover" href="https://github.com/dimitris-ap/project2_regen" target="_blank"><img src="images/github.ico" width="16px"/><span> Project Info</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+		window.onload = function() {
+		  document.getElementById("loginButton").focus();
+		};
+		</script>
+	</body>
 </html>

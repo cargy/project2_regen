@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<meta content='ReGeneration Academy // Java4web-SKG2018 // Chara Sarianidou - Konstantina Kaffe - Panagiotis Loukas - Dimitris Apostolou' name='description'/>
+		<meta name="theme-color" content="#373737">
+		
+		<link rel="shortcut icon" href="../images/favicon.ico">  
+		
+		<title>USSI | ReGeneration Academy | Java4web-SKG2018</title>
+		
+		<!-- Styles/css -->
+		<link href="../css/style.css" rel="stylesheet" id="custom-css">
+		<link href="../css/libraries/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+		<!-- Javascript/js -->
+		<script src="../js/libraries/jquery.min.js"></script>
+		<script src="../js/libraries/bootstrap.min.js"></script>
+		<script src="../js/register_form_validation.js"></script>
+		
+
+	</head>
+	<body>
+	
+		<div class="wrapper" id="myWrapper">
+			<div class="wrapper fadeInDown">
+				<div id="formContent">
+				
+					<!-- Logo -->
+					<div class="fadeIn first">
+						<a href="../index.html">
+							<img src="../images/logo.png" id="logo" alt="USSI"/>
+						</a>
+					</div>
+
+					<!-- Login Form -->
+					<form>
+						<input type="text" id="fname" class="fadeIn first" name="register" placeholder="Firstname">
+						<p class="error_form" id="fname_error_message"></p>
+						<input type="text" id="lname" class="fadeIn first" name="register" placeholder="Lastname">
+						<p class="error_form" id="lname_error_message"></p>
+						<input type="text" id="username" class="fadeIn first" name="register" placeholder="Username">
+						<p class="error_form" id="username_error_message"></p>
+						<input type="password" id="password" class="fadeIn second" name="register" placeholder="Password">
+						<p class="error_form" id="password_error_message"></p>
+						<input type="text" id="email" class="fadeIn second" name="register" placeholder="Email">
+						<p class="error_form" id="email_error_message"></p>
+						<input type="text" id="tel" class="fadeIn second" name="register" placeholder="Phone number">
+						<p class="error_form" id="tel_error_message"></p>
+						<input type="text" id="ssn" class="fadeIn third" name="register" placeholder="Social Security Number"><br><br>
+						<p class="error_form" id="ssn_error_message"></p>
+						<input type="button" class="fadeIn third" value="Sign up">
+					</form>
+
+					<p style="color: #999999; font-size: 8pt;"><i>* All fields are required!</i></p>
+
+					<!-- Footer -->
+					<div id="formFooter">
+						<a class="underlineHover" href="../index.html">Back</a>&nbsp;&nbsp;|&nbsp;
+						<a class="underlineHover" href="login.html">Log in</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script>
+			window.onload = function() {
+			  document.getElementById("fname").focus();
+			};
+		</script>
+	</body>
+</html>
