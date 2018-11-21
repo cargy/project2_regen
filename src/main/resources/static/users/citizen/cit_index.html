@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>USSI</title>
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../images/favicon.ico">
+
+  <!-- Bootstrap + JQuery -->
+  <script src="../../js/libraries/jquery.min.js"></script>
+  <script src="../../js/libraries/bootstrap.min.js"></script>
+  <link href="../../css/libraries/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom stylesheet -->
+  <link href="../../css/dashboard_style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#"><img src="../../images/logo.png" alt="USSI" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <!--<li class="nav-item active">
+            <a class="nav-link" href="https://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="https://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Disabled</a>
+          </li>-->
+        </ul>
+        <form class="form-inline mt-2 mt-md-0">
+          <button class="btn btn-secondary mr-sm-2" type="button">Sign out</button>
+        </form>
+      </div>
+    </nav>
+
+	
+	<main role="main" class="container">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+			<li class="breadcrumb-item active" aria-current="page">Home</li>
+		  </ol>
+		</nav>
+		
+		<div class="jumbotron">
+			<div class="row justify-content-center">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-6">
+					<h2 style="text-align:center;">What do you want to do?</h2><br>
+				</div>
+				<div class="col-sm-3"></div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6" style="text-align:center; height: 100px;"><br>
+					<button type="button" class="btn btn-success" style="height: 80px;" onclick="location.href='cit_appointment_creation.html';">
+						<b style="font-size: 20px;">Create</b><br>appointment
+					</button>
+				</div>
+				<div class="col-sm-6 verticalRule-left" style="text-align:center;"><br>
+					<button type="button" class="btn btn-primary" style="height: 80px;" onclick="location.href='cit_search.html';" role="">
+						<b style="font-size: 20px;">Search</b><br>appointments
+					</button>
+				</div>
+			</div>
+		</div>
+    </main>
+</body>
+
+</html>
