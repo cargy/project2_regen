@@ -1,6 +1,7 @@
 package org.regeneration.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -35,10 +36,12 @@ public class Appointment implements Serializable {
     @Column(name = "notes")
     private String notes;
 
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "citizen_id")
     private Citizen citizen;
@@ -57,9 +60,17 @@ public class Appointment implements Serializable {
         this.time = time;
         this.illnessHistory = illnessHistory;
         this.notes = notes;
-    }
+}
 
     public Appointment() {
+    }
+
+    public Long getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(Long appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public String getDate() {

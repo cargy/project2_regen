@@ -1,5 +1,8 @@
 package org.regeneration.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -41,10 +44,12 @@ public class Citizen implements Serializable {
     @Column(name = "ssn", length = 11, nullable = false, unique = true)
     private String ssn;
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "citizen", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Appointment> appointments;
 
