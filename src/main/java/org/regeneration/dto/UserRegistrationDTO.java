@@ -1,6 +1,8 @@
 package org.regeneration.dto;
 
-public class CitizenRegistrationDTO {
+import org.regeneration.security.Role;
+
+public class UserRegistrationDTO {
 
 
     private Long userId;
@@ -12,6 +14,7 @@ public class CitizenRegistrationDTO {
     private String email;
     private String phone;
     private String ssn;
+    private Role role;
 
     public Long getUserId() {
         return userId;
@@ -83,5 +86,13 @@ public class CitizenRegistrationDTO {
 
     public void setSsn(String ssn) {
         this.ssn = ssn;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
