@@ -56,6 +56,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public User(@NotNull @Size(max = 50) String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
     public Long getUserId() {
         return userId;
     }
