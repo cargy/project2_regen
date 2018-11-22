@@ -5,6 +5,7 @@ import org.regeneration.models.Citizen;
 import org.regeneration.models.User;
 import org.regeneration.repositories.CitizenRepository;
 import org.regeneration.repositories.UserRepository;
+import org.regeneration.security.Role;
 import org.regeneration.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,12 +25,12 @@ public class RegistrationController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/registration")
-    public String newRegistration(@RequestBody UserRegistrationDTO userRegistrationDTO){
+    public Citizen newRegistration(@RequestBody UserRegistrationDTO userRegistrationDTO){
 
         User newUser = new User();
         newUser.setUsername(userRegistrationDTO.getUsername());
         newUser.setPassword(passwordEncoder.encode(userRegistrationDTO.getPassword()));
-        newUser.setRole(userRegistrationDTO.getRole());
+        newUser.setRole(Role.CITIZEN);
 
         Citizen newCitizen = new Citizen();
         newCitizen.setFirstname(userRegistrationDTO.getFirstname());
@@ -40,10 +41,7 @@ public class RegistrationController {
         newCitizen.setSsn(userRegistrationDTO.getSsn());
         newCitizen.setUser(newUser);
 
-        //userRepository.save(newUser);
-        citizenRepository.save(newCitizen);
-
-        return "User created";
+        return citizenRepository.save(newCitizen);
     }
 
 

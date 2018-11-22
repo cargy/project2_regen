@@ -52,6 +52,7 @@ $(document).ready(function() {
 		{
 			$("#fname_error_message").hide();
 			$("#fname").css("border-bottom","2px solid #008731");
+			error_fname=false;
 		} else {
 			$("#fname_error_message").html("Should contain only characters");
 			$("#fname_error_message").show();
@@ -67,6 +68,7 @@ $(document).ready(function() {
 		if(pattern.test(lname) && lname!=='') {
 			$("#lname_error_message").hide();
 			$("#lname").css("border-bottom","2px solid #008731");
+			error_lname=false;
 		} else{
 			$("#lname_error_message").html("Should contain only characters");
 			$("#lname_error_message").show();
@@ -82,6 +84,7 @@ $(document).ready(function() {
 		if(pattern.test(username) && username!=='') {
 			$("#username_error_message").hide();
 			$("#username").css("border-bottom","2px solid #008731");
+			error_username=false;
 		} else{
 			$("#username_error_message").html("Should contain characters, numbers and special characters (_ and -)");
 			$("#username_error_message").show();
@@ -98,11 +101,12 @@ $(document).ready(function() {
 		if (pattern.test(password)) {
 			$("#password_error_message").hide();
 			$("#password").css("border-bottom","2px solid #008731");
-			error_password=true;
+			error_password=false;
 		} else{
 			$("#password_error_message").html(" Minimum eight characters and/or numbers");
 			$("#password_error_message").show();
 			$("#password").css("border-bottom","2px solid #ad0000");
+            error_password=true;
 		}
 	}
 
@@ -112,6 +116,7 @@ $(document).ready(function() {
 		if (email!=='' && pattern.test(email)){
 			$("#email_error_message").hide();
 			$("#email").css("border-bottom","2px solid #008731");
+			error_email=false;
 		}else{
 			$("#email_error_message").html("Should contain a valid email address ex. example@email.com");
 			$("#email_error_message").show();
@@ -126,6 +131,7 @@ $(document).ready(function() {
 		if(tel!=='' && pattern.test(tel)){
 			$("#tel_error_message").hide();
 			$("#tel").css("border-bottom","2px solid #008731");
+			error_tel=false;
 		}else{
 			$("#tel_error_message").html("Exactly ten digits");
 			$("#tel_error_message").show();
@@ -140,6 +146,7 @@ $(document).ready(function() {
 		if(ssn!=='' && pattern.test(ssn)){
 			$("#ssn_error_message").hide();
 			$("#ssn").css("border-bottom","2px solid #008731");
+			error_ssn=false;
 		}else{
 			$("#ssn_error_message").html("Exactly eleven digits");
 			$("#ssn_error_message").show();
@@ -148,13 +155,46 @@ $(document).ready(function() {
 		}
 	}
 
-	$("form").submit(function(e) {
-		if(error_fname || error_lname ||error_username ||error_password ||error_email||error_tel ||error_ssn)
-		{
+	$("#registerButton").click(function() {
+		if(error_fname || error_lname ||error_username ||error_password ||error_email||error_tel ||error_ssn){
 			//lathos
-		} else{
-			//ajax
+			alert("Wrong input. Try again.");
+		} else {
+            //ajax
+            var fd=new FormData();
+            fd.append('firstname', $("#fname").val());
+            fd.append('lastname', $("#lname").val());
+            fd.append('username', $("#username").val());
+            fd.append('password', $("#password").val());
+            fd.append('email', $("#email").val());
+            fd.append('phone', $("#tel").val());
+            fd.append('ssn', $("#ssn").val());
+
+            var object = {};
+            fd.forEach(function(value, key){
+                object[key] = value;
+            });
+            var json = JSON.stringify(object);
+
+            $.ajax({
+                    "url": "http://localhost:8080/registration",
+                    "method": "POST",
+                    "processData": false,
+                    "data": json,
+                    "contentType": "application/json",
+                    "dataType": "json",
+                    success: function (json, textStatus, jQxhr){
+                        alert("Registration complete.");
+                    },
+                    error: function (jqXhr, textStatus, errorThrown) {
+                         alert("ERROR", textStatus, errorThrown);
+                    }
+                });
+
 		}
+
+
+
 	});
 
 });
