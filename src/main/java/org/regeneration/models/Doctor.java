@@ -46,7 +46,7 @@ public class Doctor implements Serializable {
     private User user;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Appointment> appointments;
 
     @JsonManagedReference
