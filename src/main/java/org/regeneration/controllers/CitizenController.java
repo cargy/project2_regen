@@ -83,9 +83,7 @@ public class CitizenController {
     @DeleteMapping("/api/citizen/appointment/{appointmentId}")
     public void deleteAppointmentById(@PathVariable Long appointmentId) {
 
-        Appointment appointmentToDelete = getAppointmentById(appointmentId);
-
-        appointmentRepository.save(appointmentToDelete);
+        getAppointmentById(appointmentId);
         appointmentRepository.deleteById(appointmentId);
 
     }
