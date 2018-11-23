@@ -1,27 +1,19 @@
 package org.regeneration.controllers;
 
 import org.regeneration.dto.EditAppointmentDTO;
-import org.regeneration.exceptions.AppointmentNotFoundException;
-import org.regeneration.exceptions.DoctorWithSelectedSpecilatyNotFoundException;
-import org.regeneration.exceptions.SpecialtyNotFoundException;
-import org.regeneration.models.Appointment;
-import org.regeneration.models.Citizen;
-import org.regeneration.models.Doctor;
-import org.regeneration.models.Specialty;
-import org.regeneration.repositories.AppointmentRepository;
-import org.regeneration.repositories.CitizenRepository;
-import org.regeneration.repositories.DoctorRepository;
-import org.regeneration.repositories.SpecialtyRepository;
+import org.regeneration.dto.NewAppointmentDTO;
+import org.regeneration.exceptions.*;
+import org.regeneration.models.*;
+import org.regeneration.repositories.*;
+import org.regeneration.security.Role;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//@Controller
-//@RequestMapping("/api/citizen")
 @RestController
 public class CitizenController {
 
@@ -33,22 +25,37 @@ public class CitizenController {
     CitizenRepository citizenRepository;
     @Autowired
     SpecialtyRepository specialtyRepository;
+    @Autowired
+    UserRepository userRepository;
+
 
     @PostMapping("/api/citizen/appointment")
-    public Appointment createCitizenAppointment(Long citizenId, Long doctorId, String date, String time, String illnessHistory, String notes) {
+    public Appointment createCitizenAppointment(@RequestBody NewAppointmentDTO newAppointmentDTO, Principal principal) {
         Appointment appointment = new Appointment();
-        Optional<Citizen> citizenOptional = citizenRepository.findById(citizenId);
-        Citizen citizen = citizenOptional.get();
-        appointment.setCitizen(citizen);
-        Optional<Doctor> doctorOptional = doctorRepository.findById(doctorId);
-        Doctor doctor = doctorOptional.get();
-        appointment.setDoctor(doctor);
-        appointment.setDate(date);
-        appointment.setTime(time);
-        appointment.setIllnessHistory(illnessHistory);
-        appointment.setNotes(notes);
-        appointment = appointmentRepository.save(appointment);
-        return appointment;
+        User loggedInUser = userRepository.findByUsername(principal.getName());
+        if (loggedInUser.getRole() == Role.CITIZEN) {
+            Citizen citizen = loggedInUser.getCitizen();
+
+            Doctor doctor = doctorRepository.findById(newAppointmentDTO.getDoctorId()).get();
+            for (Appointment doctorAppointment : doctor.getAppointments()) {
+                if (doctorAppointment.getDate().equals(newAppointmentDTO.getDate()) && doctorAppointment.getTime().equals((newAppointmentDTO.getTime()))) {
+                    throw new DoctorAppointmentConflictException();
+                }
+            }
+            for (Appointment citizenAppointment : citizen.getAppointments()) {
+                if (citizenAppointment.getDate().equals(newAppointmentDTO.getDate()) && citizenAppointment.getTime().equals((newAppointmentDTO.getTime()))) {
+                    throw new CitizenAppointmentConflictException();
+                }
+            }
+            appointment.setDoctor(doctor);
+            appointment.setDate(newAppointmentDTO.getDate());
+            appointment.setTime(newAppointmentDTO.getTime());
+            appointment.setIllnessHistory(newAppointmentDTO.getIllnessHistory());
+            appointment.setNotes(newAppointmentDTO.getNotes());
+            appointment = appointmentRepository.save(appointment);
+            return appointment;
+        }
+        return null;
     }
 
     @GetMapping("/api/citizen/specialties")
@@ -91,7 +98,7 @@ public class CitizenController {
 
 
     @PutMapping("/api/citizen/appointment")
-    public Appointment editAppointment(EditAppointmentDTO editAppointmentDTO){
+    public Appointment editAppointment(EditAppointmentDTO editAppointmentDTO) {
         //todo dimitris
         return null;
     }
