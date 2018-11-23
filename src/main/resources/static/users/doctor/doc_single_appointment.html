@@ -2,144 +2,141 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>USSI</title>
+    <title>USSI</title>
 
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="../../images/favicon.ico">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../images/favicon.ico">
 
-  <!-- Bootstrap + JQuery + FontAwesome -->
-  <script src="../../js/libraries/jquery.min.js"></script>
-  <script src="../../js/libraries/bootstrap.min.js"></script>
-  <link href="../../css/libraries/bootstrap.min.css" rel="stylesheet">
-  <link href="../../css/libraries/fontawesome-free.min.css" rel="stylesheet">
+    <!-- Bootstrap + JQuery + FontAwesome -->
+    <script src="../../js/libraries/jquery.min.js"></script>
+    <script src="../../js/libraries/bootstrap.min.js"></script>
+    <link href="../../css/libraries/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/libraries/fontawesome-free.min.css" rel="stylesheet">
 
-  <!-- Custom stylesheet -->
-  <link href="../../css/dashboard_style.css" rel="stylesheet">
+    <!-- Custom stylesheet + js-->
+    <link href="../../css/dashboard_style.css" rel="stylesheet">
+    <script src="../../js/const.js"></script>
+    <script src="../../js/logout.js"></script>
 
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#"><img src="../../images/logo.png" alt="USSI" /></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#"><img src="../../images/logo.png" alt="USSI"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <!--<li class="nav-item active">
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="https://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Disabled</a>
-          </li>-->
         </ul>
         <form class="form-inline mt-2 mt-md-0">
-          <button class="btn btn-secondary mr-sm-2" type="button">Sign out</button>
+            <button class="btn btn-secondary mr-sm-2" type="button" onclick="logout();">Sign out</button>
         </form>
-      </div>
+    </div>
+</nav>
+
+
+<main role="main" class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active"><a href="#" onclick="history.go(-2)">Home</a></li>
+            <li class="breadcrumb-item active"><a href="#" onclick="history.go(-1)">Appointments</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Appointment Info</li>
+        </ol>
     </nav>
 
-	
-	<main role="main" class="container">
-		<nav aria-label="breadcrumb">
-		  <ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#" onclick="history.go(-2)">Home</a></li>
-			<li class="breadcrumb-item active"><a href="#" onclick="history.go(-1)">Appointments</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Appointment Info</li>
-		  </ol>
-		</nav>
-		
-		<div class="jumbotron">
-			<div class="row justify-content-center">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6">
-					<h2 style="text-align:center;">Appointment Info</h2><hr>
-				</div>
-				<div class="col-sm-3"></div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6">
-				
-				
-				
-					<div class="row">
-						<div class="col-sm-12" style="text-align:center;">
-							<table class="table table-bordered table-striped table-sm" style="text-align: center;">
-								<tbody>
-								<tr>
-									<td>Date:</td>
-									<td>2019-12-16</td>
-								</tr>
-								<tr>
-									<td>Time:</td>
-									<td>18:30</td>
-								</tr>
-								<tr>
-									<td>Illness History:</td>
-									<td>Eimai ypertasikos</td>
-								</tr>
-								<tr>
-									<td>Notes:</td>
-									<td>Pairnw xapia</td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
+    <div class="jumbotron">
+        <div class="row justify-content-center">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <h2 style="text-align:center;">Appointment Info</h2>
+                <hr>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
 
-				
-				
-				</div>
-				<div class="col-sm-3"></div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6" style="text-align:center;"><br>
-					<!-- Button trigger modal -->
-					<button type="button" class="btn btn-info open" data-toggle="modal" data-target="#citizenInfoModal">Show patient's info</button>
-				</div>
-				<div class="col-sm-3"></div>
-			</div>
-		</div>
-		
-    </main>
-	
-	
-	
-	
-	<!-- Modal -->
-	<div class="modal fade" id="citizenInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	  <div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<?xml version="1.0" ?><svg height="32" viewBox="0 0 1792 1792" width="32" xmlns="http://www.w3.org/2000/svg"><path d="M1600 1405q0 120-73 189.5t-194 69.5h-874q-121 0-194-69.5t-73-189.5q0-53 3.5-103.5t14-109 26.5-108.5 43-97.5 62-81 85.5-53.5 111.5-20q9 0 42 21.5t74.5 48 108 48 133.5 21.5 133.5-21.5 108-48 74.5-48 42-21.5q61 0 111.5 20t85.5 53.5 62 81 43 97.5 26.5 108.5 14 109 3.5 103.5zm-320-893q0 159-112.5 271.5t-271.5 112.5-271.5-112.5-112.5-271.5 112.5-271.5 271.5-112.5 271.5 112.5 112.5 271.5z"/></svg>
-			<h5 class="modal-title" id="exampleModalLongTitle">Patient's Info</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			  <span aria-hidden="true">&times;</span>
-			</button>
-		  </div>
-		  <div class="modal-body">
-			<p><i>Social Security Number: </i><b>11109100123</b><br>
-			<i>Firstname: </i><b>Kalos</b><br>
-			<i>Lastname: </i><b>Skylos</b><br>
-			<i>Email: </i><b>skyle@gmail.com</b><br>
-			<i>Phone: </i><b>9011230240</b></p>
-		  </div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		  </div>
-		</div>
-	  </div>
-	</div>
+
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                        <table class="table table-bordered table-striped table-sm" style="text-align: center;">
+                            <tbody>
+                            <tr>
+                                <td>Date:</td>
+                                <td>2019-12-16</td>
+                            </tr>
+                            <tr>
+                                <td>Time:</td>
+                                <td>18:30</td>
+                            </tr>
+                            <tr>
+                                <td>Illness History:</td>
+                                <td>Eimai ypertasikos</td>
+                            </tr>
+                            <tr>
+                                <td>Notes:</td>
+                                <td>Pairnw xapia</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" style="text-align:center;"><br>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-info open" data-toggle="modal" data-target="#citizenInfoModal">Show
+                    patient's info
+                </button>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+
+</main>
+
+
+<!-- Modal -->
+<div class="modal fade" id="citizenInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <?xml version="1.0" ?>
+                <svg height="32" viewBox="0 0 1792 1792" width="32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1600 1405q0 120-73 189.5t-194 69.5h-874q-121 0-194-69.5t-73-189.5q0-53 3.5-103.5t14-109 26.5-108.5 43-97.5 62-81 85.5-53.5 111.5-20q9 0 42 21.5t74.5 48 108 48 133.5 21.5 133.5-21.5 108-48 74.5-48 42-21.5q61 0 111.5 20t85.5 53.5 62 81 43 97.5 26.5 108.5 14 109 3.5 103.5zm-320-893q0 159-112.5 271.5t-271.5 112.5-271.5-112.5-112.5-271.5 112.5-271.5 271.5-112.5 271.5 112.5 112.5 271.5z"/>
+                </svg>
+                <h5 class="modal-title" id="exampleModalLongTitle">Patient's Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><i>Social Security Number: </i><b>11109100123</b><br>
+                    <i>Firstname: </i><b>Kalos</b><br>
+                    <i>Lastname: </i><b>Skylos</b><br>
+                    <i>Email: </i><b>skyle@gmail.com</b><br>
+                    <i>Phone: </i><b>9011230240</b></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>
