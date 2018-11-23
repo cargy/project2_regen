@@ -64,7 +64,7 @@ public class AppointmentController {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
                 TemporalAccessor date = formatter.parse(fromDate);
-                LocalDate ldt = LocalDate.from(date).plusMonths(15L);
+                LocalDate ldt = LocalDate.from(date).plusMonths(1L);
 
                 String fromDatePlusOneMonth = formatter.format(ldt);
 

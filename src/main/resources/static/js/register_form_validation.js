@@ -183,7 +183,7 @@ $(document).ready(function() {
                     "data": requestData,
                     "contentType": "application/json",
                     "dataType": "json",
-                    success: function (responseData, textStatus, jQxhr){
+                    success: function(responseData, textStatus, jQxhr){
                         alert("Registration complete.");
 
                         var loginfd = new FormData();
