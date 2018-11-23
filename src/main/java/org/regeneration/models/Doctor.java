@@ -136,4 +136,5 @@ public class Doctor implements Serializable {
     public void setSpecialty(Specialty specialty) {
         this.specialty = specialty;
     }
+
 }

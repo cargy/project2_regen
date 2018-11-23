@@ -2,6 +2,7 @@ package org.regeneration;
 
 import org.regeneration.models.*;
 import org.regeneration.repositories.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.print.Doc;
 import java.util.Optional;
 
 @Configuration
@@ -61,8 +63,8 @@ public class LoadDatabase {
 //            appointment.setCitizen(citizen);
 //            appointment.setDoctor(doctor);
 //
-            appointment1.setCitizen(citizen);
-            appointment1.setDoctor(doctor1);
+//            appointment1.setCitizen(citizen);
+//            appointment1.setDoctor(doctor1);
 
 
 //            logger.info("Preloading " + userRepository.save(userGuest));
@@ -77,9 +79,9 @@ public class LoadDatabase {
             logger.info("Preloading " + doctorRepository.save(doctor));
             logger.info("Preloading " + doctorRepository.save(doctor1));
             logger.info("Preloading " + doctorRepository.save(doctor2));
-
-            logger.info("Preloading " + citizenRepository.save(citizen));
-
+//
+//            logger.info("Preloading " + citizenRepository.save(citizen));
+//
 //            logger.info("Preloading " + appointmentRepository.save(appointment));
             logger.info("Preloading " + appointmentRepository.save(appointment1));
 
@@ -90,6 +92,14 @@ public class LoadDatabase {
                throw new AssertionError("Failed to delete Appointment: " + delAppointment.getAppointmentId());
            }
 
+            logger.info("Preloading " + appointmentRepository.save(appointment1));
+
+           Appointment delAppointment = appointmentRepository.findById(12l).get();
+
+           appointmentRepository.delete(delAppointment);
+           if (appointmentRepository.findById(delAppointment.getAppointmentId()).isPresent()) {
+               throw new AssertionError("Failed to delete Appointment: " + delAppointment.getAppointmentId());
+           }
 
 
             Optional<Doctor> d = doctorRepository.findById(4L);
