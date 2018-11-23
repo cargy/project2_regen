@@ -7,21 +7,36 @@ function login(usernameElement,passwordElement) {
 	fd.append( 'password', password);
 
 	$.ajax({
-	url: ROOT_PATH + '/login',
-	data: fd,
-	processData: false,
-	contentType: false,
-	type: 'POST',
-	success: function(data){
-		sessionStorage.setItem(SESSION_STORAGE_LOGIN_TOKEN_NAME, username);
-		sessionStorage.setItem(SESSION_STORAGE_ROLE_NAME, data);//save user's role
-		window.location.replace(ROOT_PATH + "/users/doctor/index.html");
-	},
-	statusCode: {
-		401 : function() {
-			alert("Invalid username or password!");
-			}
-		}
+        url: ROOT_PATH + '/login',
+        data: fd,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function(data){
+            $.ajax({
+                url:ROOT_PATH+'/api/user',
+                processData:false,
+                contentType:false,
+                type:'GET',
+                success:function(userdata, textStatus, jQxhr){
+                    if(userdata=="CITIZEN"){
+                        sessionStorage.setItem(SESSION_STORAGE_LOGIN_TOKEN_NAME, username);
+                        sessionStorage.setItem(SESSION_STORAGE_ROLE_NAME, userdata);//save user's role
+                        window.location.replace(ROOT_PATH + "/users/citizen/index.html");
+                    }else{
+                        sessionStorage.setItem(SESSION_STORAGE_LOGIN_TOKEN_NAME, username);
+                        sessionStorage.setItem(SESSION_STORAGE_ROLE_NAME, userdata);//save user's role
+                        window.location.replace(ROOT_PATH + "/users/doctor/index.html");
+                    }
+
+                }
+            });
+        },
+        statusCode: {
+            401 : function() {
+                alert("Invalid username or password!");
+                }
+            }
 	});
 
 }
