@@ -61,8 +61,8 @@ public class LoadDatabase {
 //            appointment.setCitizen(citizen);
 //            appointment.setDoctor(doctor);
 //
-//            appointment1.setCitizen(citizen);
-//            appointment1.setDoctor(doctor1);
+            appointment1.setCitizen(citizen);
+            appointment1.setDoctor(doctor1);
 
 
 //            logger.info("Preloading " + userRepository.save(userGuest));
@@ -77,26 +77,30 @@ public class LoadDatabase {
             logger.info("Preloading " + doctorRepository.save(doctor));
             logger.info("Preloading " + doctorRepository.save(doctor1));
             logger.info("Preloading " + doctorRepository.save(doctor2));
-            citizenRepository.save(citizen);
-//
-//            logger.info("Preloading " + citizenRepository.save(citizen));
-//
+
+            logger.info("Preloading " + citizenRepository.save(citizen));
+
 //            logger.info("Preloading " + appointmentRepository.save(appointment));
-//            logger.info("Preloading " + appointmentRepository.save(appointment1));
+            logger.info("Preloading " + appointmentRepository.save(appointment1));
+
+           Appointment delAppointment = appointmentRepository.findById(12l).get();
+
+           appointmentRepository.delete(delAppointment);
+           if (appointmentRepository.findById(delAppointment.getAppointmentId()).isPresent()) {
+               throw new AssertionError("Failed to delete Appointment: " + delAppointment.getAppointmentId());
+           }
+
 
 
             Optional<Doctor> d = doctorRepository.findById(4L);
             Doctor delDoctor = d.get();
-            User delUser = d.get().getUser();
             Specialty notDeleteSpecialty = delDoctor.getSpecialty();
 
-            delDoctor.setSpecialty(null);
-            delDoctor.setAppointments(null);
-            doctorRepository.save(delDoctor);
             doctorRepository.delete(delDoctor);
+            //userRepository.delete(delDoctor.getUser());
 
-            if (userRepository.findById(delUser.getUserId()).isPresent()) {
-                throw new AssertionError("Failed to delete User: " + delUser.getUserId());
+            if (userRepository.findById(delDoctor.getUser().getUserId()).isPresent()) {
+                throw new AssertionError("Failed to delete User: " + delDoctor.getUser().getUserId());
             }
 
             if (doctorRepository.findById(delDoctor.getDoctorId()).isPresent()) {

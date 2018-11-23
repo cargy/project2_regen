@@ -26,7 +26,7 @@ public class Specialty implements Serializable {
     private String specialty;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "specialty", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "specialty", fetch = FetchType.EAGER)
     private Set<Doctor> doctors;
 
     public Specialty() {
