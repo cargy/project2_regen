@@ -47,6 +47,7 @@ public class CitizenController {
                     throw new CitizenAppointmentConflictException();
                 }
             }
+            appointment.setCitizen(citizen);
             appointment.setDoctor(doctor);
             appointment.setDate(newAppointmentDTO.getDate());
             appointment.setTime(newAppointmentDTO.getTime());
