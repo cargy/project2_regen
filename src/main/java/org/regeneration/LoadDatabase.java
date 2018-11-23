@@ -92,16 +92,6 @@ public class LoadDatabase {
                throw new AssertionError("Failed to delete Appointment: " + delAppointment.getAppointmentId());
            }
 
-            logger.info("Preloading " + appointmentRepository.save(appointment1));
-
-           Appointment delAppointment = appointmentRepository.findById(12l).get();
-
-           appointmentRepository.delete(delAppointment);
-           if (appointmentRepository.findById(delAppointment.getAppointmentId()).isPresent()) {
-               throw new AssertionError("Failed to delete Appointment: " + delAppointment.getAppointmentId());
-           }
-
-
             Optional<Doctor> d = doctorRepository.findById(4L);
             Doctor delDoctor = d.get();
             Specialty notDeleteSpecialty = delDoctor.getSpecialty();
