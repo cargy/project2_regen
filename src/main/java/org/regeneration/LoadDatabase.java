@@ -63,8 +63,8 @@ public class LoadDatabase {
 //            appointment.setCitizen(citizen);
 //            appointment.setDoctor(doctor);
 //
-//            appointment1.setCitizen(citizen);
-//            appointment1.setDoctor(doctor1);
+            appointment1.setCitizen(citizen);
+            appointment1.setDoctor(doctor1);
 
 
 //            logger.info("Preloading " + userRepository.save(userGuest));
@@ -79,9 +79,9 @@ public class LoadDatabase {
             logger.info("Preloading " + doctorRepository.save(doctor));
             logger.info("Preloading " + doctorRepository.save(doctor1));
             logger.info("Preloading " + doctorRepository.save(doctor2));
-//
-//            logger.info("Preloading " + citizenRepository.save(citizen));
-//
+
+            logger.info("Preloading " + citizenRepository.save(citizen));
+
 //            logger.info("Preloading " + appointmentRepository.save(appointment));
             logger.info("Preloading " + appointmentRepository.save(appointment1));
 
