@@ -1,5 +1,6 @@
 package org.regeneration.controllers;
 
+import org.regeneration.dto.EditAppointmentDTO;
 import org.regeneration.exceptions.AppointmentNotFoundException;
 import org.regeneration.exceptions.DoctorWithSelectedSpecilatyNotFoundException;
 import org.regeneration.exceptions.SpecialtyNotFoundException;
@@ -86,6 +87,13 @@ public class CitizenController {
         getAppointmentById(appointmentId);
         appointmentRepository.deleteById(appointmentId);
 
+    }
+
+
+    @PutMapping("/api/citizen/appointment")
+    public Appointment editAppointment(EditAppointmentDTO editAppointmentDTO){
+        //todo dimitris
+        return null;
     }
 
 }
