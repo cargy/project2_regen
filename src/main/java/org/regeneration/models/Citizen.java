@@ -50,7 +50,7 @@ public class Citizen implements Serializable {
     private User user;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "citizen", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "citizen")
     private Set<Appointment> appointments;
 
     public Citizen() {

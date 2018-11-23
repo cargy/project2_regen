@@ -34,11 +34,11 @@ public class User implements Serializable {
     private Role role;
 
     @JsonBackReference
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Doctor doctor;
 
     @JsonBackReference
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Citizen citizen;
 
     public User() {
@@ -105,13 +105,5 @@ public class User implements Serializable {
     public Role getRole() {return role;}
 
     public void setRole(Role role) {this.role = role;}
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-   }
 
 }
