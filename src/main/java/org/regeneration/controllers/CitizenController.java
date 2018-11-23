@@ -97,11 +97,40 @@ public class CitizenController {
 
     }
 
-
     @PutMapping("/api/citizen/appointment")
-    public Appointment editAppointment(EditAppointmentDTO editAppointmentDTO) {
-        //todo dimitris
+    public Appointment editAppointment(@RequestBody EditAppointmentDTO editAppointmentDTO,
+                                       Principal principal) {
+
+        Appointment appointmentToEdit=appointmentRepository.findById(editAppointmentDTO.getAppointmentId()).get();
+        Doctor doctor = doctorRepository.findById(editAppointmentDTO.getDoctorId())
+                .orElseThrow(() -> new DoctorNotFoundException(editAppointmentDTO.getDoctorId()));
+
+        User loggedInUser = userRepository.findByUsername(principal.getName());
+        if (loggedInUser.getRole() == Role.CITIZEN) {
+            Citizen citizen = loggedInUser.getCitizen();
+
+            for (Appointment doctorsAppointment : doctor.getAppointments()) {
+                if (doctorsAppointment.getAppointmentId() != appointmentToEdit.getAppointmentId()) {//apofeugw to na sygkrinw to idio rantevou
+                    if (doctorsAppointment.getDate().equals(appointmentToEdit.getDate()) && doctorsAppointment.getTime().equals(appointmentToEdit.getTime())) {
+                        throw new DoctorAppointmentConflictException();
+                    }
+                }
+            }
+            for (Appointment citizenAppointment : citizen.getAppointments()) {
+                if (citizenAppointment.getAppointmentId() != appointmentToEdit.getAppointmentId()) {//apofeugw to na sygkrinw to idio rantevou
+                    if (citizenAppointment.getDate().equals(appointmentToEdit.getDate()) && citizenAppointment.getTime().equals(appointmentToEdit.getTime())) {
+                        throw new CitizenAppointmentConflictException();
+                    }
+                }
+            }
+            appointmentToEdit.setDate(editAppointmentDTO.getDate());
+            appointmentToEdit.setTime(editAppointmentDTO.getTime());
+            appointmentToEdit.setIllnessHistory(editAppointmentDTO.getIllnessHistory());
+            appointmentToEdit.setNotes(editAppointmentDTO.getNotes());
+
+            appointmentRepository.save(appointmentToEdit);
+            return appointmentToEdit;
+        }
         return null;
     }
-
 }

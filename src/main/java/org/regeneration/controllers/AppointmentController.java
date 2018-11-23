@@ -108,5 +108,52 @@ public class AppointmentController {
                 .orElseThrow(() -> new CitizenNotFoundException(id));
     }
 
+
+
+    @GetMapping("/api/citizen/appointments")
+    public List<Appointment> getCitAppointments(@RequestParam(value = "fromDate", defaultValue = "") String fromDate,
+                                                @RequestParam(value = "toDate", defaultValue = "") String toDate,
+                                                @RequestParam(value = "specialty", defaultValue = "") String specialty,
+                                                Principal principal) {
+
+        User loggedInUser = userRepository.findByUsername(principal.getName());
+        if (loggedInUser.getRole() == Role.CITIZEN) {
+            Long citId = loggedInUser.getCitizen().getCitizenId();
+            List<Appointment> appointments = appointmentRepository.findAll();
+            List<Appointment> response = new ArrayList<>();
+            if (fromDate.equals("")) {
+                LocalDateTime ldt = LocalDateTime.now();
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String now = format.format(ldt);
+                fromDate = now;
+            }
+            if (toDate.equals("")) {
+                //from+1 month
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                TemporalAccessor date = formatter.parse(fromDate);
+                LocalDate ldt = LocalDate.from(date).plusMonths(1L);
+                String fromDatePlusOneMonth = formatter.format(ldt);
+                toDate = fromDatePlusOneMonth;
+            }
+            if (specialty.equals("")) {
+                for (Appointment a : appointments) {
+                    if (a.getDate().compareTo(fromDate) > 0 && a.getDate().compareTo(toDate) < 0 && a.getCitizen().getCitizenId() == citId) {
+                        response.add(a);
+                    }
+                }
+            } else {
+                for (Appointment a : appointments) {
+                    if (a.getDate().compareTo(fromDate) > 0 && a.getDate().compareTo(toDate) < 0 && a.getCitizen().getCitizenId() == citId) {
+                        if (a.getDoctor().getSpecialty().equals(specialty)) {
+                            response.add(a);
+                        }
+                    }
+                }
+            }
+            return response;
+        }
+        return null;
+    }
+
 }
 
