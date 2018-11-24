@@ -21,6 +21,7 @@
     <link href="../../css/dashboard_style.css" rel="stylesheet">
     <script src="../../js/const.js"></script>
     <script src="../../js/logout.js"></script>
+    <script src="../../js/load_doctors_single_appointment.js"></script>
 
 </head>
 
@@ -71,19 +72,19 @@
                             <tbody>
                             <tr>
                                 <td>Date:</td>
-                                <td>2019-12-16</td>
+                                <td id="date"></td>
                             </tr>
                             <tr>
                                 <td>Time:</td>
-                                <td>18:30</td>
+                                <td id="time"></td>
                             </tr>
                             <tr>
                                 <td>Illness History:</td>
-                                <td>Eimai ypertasikos</td>
+                                <td id="illness"></td>
                             </tr>
                             <tr>
                                 <td>Notes:</td>
-                                <td>Pairnw xapia</td>
+                                <td id="notes"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -125,11 +126,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p><i>Social Security Number: </i><b>11109100123</b><br>
-                    <i>Firstname: </i><b>Kalos</b><br>
-                    <i>Lastname: </i><b>Skylos</b><br>
-                    <i>Email: </i><b>skyle@gmail.com</b><br>
-                    <i>Phone: </i><b>9011230240</b></p>
+                <p><i>Social Security Number: </i><b id="ssn"></b><br>
+                    <i>Firstname: </i><b id="fname"></b><br>
+                    <i>Lastname: </i><b id="lname"></b><br>
+                    <i>Email: </i><b id="email"></b><br>
+                    <i>Phone: </i><b id="phone"></b></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
