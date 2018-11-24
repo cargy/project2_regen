@@ -2,12 +2,12 @@ package org.regeneration.dto;
 
 public class NewAppointmentDTO {
 
-        private Long citizenId;
-        private Long doctorId;
-        private String date;
-        private String time;
-        private String illnessHistory;
-        private String notes;
+    private Long citizenId;
+    private Long doctorId;
+    private String date;
+    private String time;
+    private String illnessHistory;
+    private String notes;
 
     public Long getCitizenId() {
         return citizenId;

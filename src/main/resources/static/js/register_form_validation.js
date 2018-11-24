@@ -213,8 +213,10 @@ $(document).ready(function() {
                                 }
                             });
                     },
-                    error: function (jqXhr, textStatus, errorThrown) {
-                         alert("ERROR", textStatus, errorThrown);
+                    statusCode: {
+                        409 : function() {
+                            alert("One or more of your credentials (username, email, phone, SSN) already exist.");
+                            }
                     }
                 });
 

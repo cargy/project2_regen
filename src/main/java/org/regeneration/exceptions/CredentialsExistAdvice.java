@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class UsernameExistsAdvice {
+public class CredentialsExistAdvice {
 
     @ResponseBody
-    @ExceptionHandler(UsernameExistsException.class)
+    @ExceptionHandler(CredentialsExistException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    String usernameExistsHandler(UsernameExistsException ex){
+    String usernameExistsHandler(CredentialsExistException ex) {
         return ex.getMessage();
     }
 

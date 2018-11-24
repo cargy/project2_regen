@@ -16,6 +16,7 @@ public class UserRegistrationDTO {
     private String ssn;
     private Role role;
 
+
     public Long getUserId() {
         return userId;
     }

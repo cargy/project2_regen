@@ -12,7 +12,9 @@ public class DoctorAppointmentConflictAdvice {
     @ResponseBody
     @ExceptionHandler(DoctorAppointmentConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    String doctorNotFoundHandler(DoctorAppointmentConflictException ex){return ex.getMessage();}
+    String doctorNotFoundHandler(DoctorAppointmentConflictException ex) {
+        return ex.getMessage();
+    }
 
 }
 

@@ -20,7 +20,7 @@ public class DoctorController {
     }
 
     @GetMapping("/api/doctors/{id}")
-    public Optional<Doctor> getDoctor(@PathVariable Long id){
+    public Optional<Doctor> getDoctor(@PathVariable Long id) {
         return doctorRepository.findById(id);
     }
 

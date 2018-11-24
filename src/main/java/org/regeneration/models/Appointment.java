@@ -59,7 +59,7 @@ public class Appointment implements Serializable {
         this.time = time;
         this.illnessHistory = illnessHistory;
         this.notes = notes;
-}
+    }
 
     public Appointment() {
     }
