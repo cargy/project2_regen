@@ -174,17 +174,44 @@ $(document).ready(function() {
             fd.forEach(function(value, key){
                 object[key] = value;
             });
-            var json = JSON.stringify(object);
+            var requestData = JSON.stringify(object);
 
             $.ajax({
-                    "url": "http://localhost:8080/registration",
+                    "url": ROOT_PATH + "/registration",
                     "method": "POST",
                     "processData": false,
-                    "data": json,
+                    "data": requestData,
                     "contentType": "application/json",
                     "dataType": "json",
-                    success: function (json, textStatus, jQxhr){
+                    success: function(responseData, textStatus, jQxhr){
                         alert("Registration complete.");
+
+                        var loginfd = new FormData();
+                        loginfd.append( 'username', $("#username").val());
+                        loginfd.append( 'password', $("#password").val());
+
+
+                        $.ajax({
+                            "url": ROOT_PATH + "/login",
+                            "data": loginfd,
+                            "processData": false,
+                            "contentType": false,
+                            "type": "POST",
+                            success: function(data){
+                                sessionStorage.setItem(SESSION_STORAGE_LOGIN_TOKEN_NAME, responseData.user.username);
+                                sessionStorage.setItem(SESSION_STORAGE_ROLE_NAME, responseData.user.role);//save user's role
+                                if(responseData.user.role=="CITIZEN"){
+                                    window.location.replace(ROOT_PATH + "/users/citizen/index.html");
+                                }else{
+                                    window.location.replace(ROOT_PATH + "/users/doctor/index.html");
+                                }
+                            },
+                            statusCode: {
+                                401 : function() {
+                                    alert("Invalid username or password!");
+                                    }
+                                }
+                            });
                     },
                     error: function (jqXhr, textStatus, errorThrown) {
                          alert("ERROR", textStatus, errorThrown);

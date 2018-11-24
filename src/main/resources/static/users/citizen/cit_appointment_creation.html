@@ -2,143 +2,136 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>USSI</title>
+    <title>USSI</title>
 
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="icon" href="../../images/favicon.ico">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../images/favicon.ico">
 
-  <!-- Bootstrap + JQuery + FontAwesome -->
-  <script src="../../js/libraries/jquery.min.js"></script>
-  <script src="../../js/libraries/bootstrap.min.js"></script>
-  <link href="../../css/libraries/bootstrap.min.css" rel="stylesheet">
-  <link href="../../css/libraries/fontawesome-free.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../css/libraries/jquery.timepicker.min.css">
-  <script src="../../js/libraries/jquery.timepicker.min.js"></script>
+    <!-- Bootstrap + JQuery + FontAwesome -->
+    <script src="../../js/libraries/jquery.min.js"></script>
+    <script src="../../js/libraries/bootstrap.min.js"></script>
+    <link href="../../css/libraries/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/libraries/fontawesome-free.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/libraries/jquery.timepicker.min.css">
+    <script src="../../js/libraries/jquery.timepicker.min.js"></script>
 
-  <!-- Custom stylesheet -->
-  <link href="../../css/dashboard_style.css" rel="stylesheet">
+    <!-- Custom stylesheet + js-->
+    <link href="../../css/dashboard_style.css" rel="stylesheet">
+    <script src="../../js/const.js"></script>
+    <script src="../../js/logout.js"></script>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#"><img src="../../images/logo.png" alt="USSI" /></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#"><img src="../../images/logo.png" alt="USSI"/></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <!--<li class="nav-item active">
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="https://getbootstrap.com/docs/4.1/examples/navbar-fixed/#">Disabled</a>
-          </li>-->
         </ul>
         <form class="form-inline mt-2 mt-md-0">
-          <button class="btn btn-secondary mr-sm-2" type="button">Sign out</button>
+            <button class="btn btn-secondary mr-sm-2" type="button" onclick="logout();">Sign out</button>
         </form>
-      </div>
+    </div>
+</nav>
+
+
+<main role="main" class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active"><a href="#" onclick="history.go(-1)">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Create Appointment</li>
+        </ol>
     </nav>
 
-	
-	<main role="main" class="container">
-		<nav aria-label="breadcrumb">
-		  <ol class="breadcrumb">
-			<li class="breadcrumb-item active"><a href="#" onclick="history.go(-1)">Home</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Create Appointment</li>
-		  </ol>
-		</nav>
-		
-		<div class="jumbotron">
-			<div class="row justify-content-center">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6">
-					<h2 style="text-align:center;">Create Appointment</h2><hr>
-				</div>
-				<div class="col-sm-3"></div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6">
-				
-				
-				
-					<div class="row">
-						<div class="col-sm-12" style="text-align:center;">
-							<table class="table table-bordered table-striped table-sm" style="text-align: center;">
-								<tbody>
-								<tr>
-									<td>Specialty:</td>
-									<td>
-										<div class="input-group mb-3">
-										  <select class="custom-select" id="specialty">
-											<option selected>Choose Specialty...</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
-										  </select>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>Doctors:</td>
-									<td>	
-										<div class="input-group mb-3">
-										  <select class="custom-select" id="doctor">
-											<option selected>Choose Doctor...</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
-										  </select>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>Date:</td>
-									<td><input type="date" value="2019-12-16"></input></td>
-								</tr>
-								<tr>
-									<td>Time:</td>
-									<td><input type="text" class="timepicker"/></td>
-								</tr>
-								<tr>
-									<td>Illness History:</td>
-									<td><input type="text" placeholder="Eimai ypertasikos"></input></td>
-								</tr>
-								<tr>
-									<td>Notes:</td>
-									<td><input type="text" placeholder="Pairnw xapia"></input></td>
-								</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
+    <div class="jumbotron">
+        <div class="row justify-content-center">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <h2 style="text-align:center;">Create Appointment</h2>
+                <hr>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
 
-				
-				
-				</div>
-				<div class="col-sm-3"></div>
-			</div>
-			<div class="row">
-				<div class="col-sm-3"></div>
-				<div class="col-sm-6" style="text-align:center;"><br>
-					<button type="button" class="btn btn-secondary" onclick="history.go(-1)">Cancel</button>
-					<button type="button" class="btn btn-success" onclick="createAppointment();">Create</button>
-				</div>
-				<div class="col-sm-3"></div>
-			</div>
-		</div>
-    </main>
-	
-	<script>
+
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:center;">
+                        <table class="table table-bordered table-striped table-sm" style="text-align: center;">
+                            <tbody>
+                            <tr>
+                                <td>Specialty:</td>
+                                <td>
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" id="specialty">
+                                            <option selected>Choose Specialty...</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Doctors:</td>
+                                <td>
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" id="doctor">
+                                            <option selected>Choose Doctor...</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Date:</td>
+                                <td><input type="date" value="2019-12-16"></input></td>
+                            </tr>
+                            <tr>
+                                <td>Time:</td>
+                                <td><input type="text" class="timepicker"/></td>
+                            </tr>
+                            <tr>
+                                <td>Illness History:</td>
+                                <td><input type="text" placeholder="Eimai ypertasikos"></input></td>
+                            </tr>
+                            <tr>
+                                <td>Notes:</td>
+                                <td><input type="text" placeholder="Pairnw xapia"></input></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" style="text-align:center;"><br>
+                <button type="button" class="btn btn-secondary" onclick="history.go(-1)">Cancel</button>
+                <button type="button" class="btn btn-success" onclick="createAppointment();">Create</button>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+</main>
+
+<script>
 		$(document).ready(function(){
 			$('input.timepicker').timepicker({});
 		});
@@ -154,7 +147,8 @@
 			dropdown: true,
 			scrollbar: true
 		});
-	</script>
+
+</script>
 </body>
 
 </html>
