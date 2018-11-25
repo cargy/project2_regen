@@ -161,64 +161,64 @@ $(document).ready(function() {
 			alert("Wrong input. Try again.");
 		} else {
             //ajax
-            var fd=new FormData();
-            fd.append('firstname', $("#fname").val());
-            fd.append('lastname', $("#lname").val());
-            fd.append('username', $("#username").val());
-            fd.append('password', $("#password").val());
-            fd.append('email', $("#email").val());
-            fd.append('phone', $("#tel").val());
-            fd.append('ssn', $("#ssn").val());
+                var fd=new FormData();
+                fd.append('firstname', $("#fname").val());
+                fd.append('lastname', $("#lname").val());
+                fd.append('username', $("#username").val());
+                fd.append('password', $("#password").val());
+                fd.append('email', $("#email").val());
+                fd.append('phone', $("#tel").val());
+                fd.append('ssn', $("#ssn").val());
 
-            var object = {};
-            fd.forEach(function(value, key){
-                object[key] = value;
-            });
-            var requestData = JSON.stringify(object);
-
-            $.ajax({
-                    "url": ROOT_PATH + "/registration",
-                    "method": "POST",
-                    "processData": false,
-                    "data": requestData,
-                    "contentType": "application/json",
-                    "dataType": "json",
-                    success: function(responseData, textStatus, jQxhr){
-                        alert("Registration complete.");
-
-                        var loginfd = new FormData();
-                        loginfd.append( 'username', $("#username").val());
-                        loginfd.append( 'password', $("#password").val());
-
-
-                        $.ajax({
-                            "url": ROOT_PATH + "/login",
-                            "data": loginfd,
-                            "processData": false,
-                            "contentType": false,
-                            "type": "POST",
-                            success: function(data){
-                                sessionStorage.setItem(SESSION_STORAGE_LOGIN_TOKEN_NAME, responseData.user.username);
-                                sessionStorage.setItem(SESSION_STORAGE_ROLE_NAME, responseData.user.role);//save user's role
-                                if(responseData.user.role=="CITIZEN"){
-                                    window.location.replace(ROOT_PATH + "/users/citizen/index.html");
-                                }else{
-                                    window.location.replace(ROOT_PATH + "/users/doctor/index.html");
-                                }
-                            },
-                            statusCode: {
-                                401 : function() {
-                                    alert("Invalid username or password!");
-                                    }
-                                }
-                            });
-                    },
-                    statusCode: {
-                        409 : function() {
-                            alert("One or more of your credentials (username, email, phone, SSN) already exist.");
-                            }
-                    }
+                var object = {};
+                fd.forEach(function(value, key){
+                    object[key] = value;
                 });
+                var requestData = JSON.stringify(object);
+
+                $.ajax({
+                        "url": ROOT_PATH + "/registration",
+                        "method": "POST",
+                        "processData": false,
+                        "data": requestData,
+                        "contentType": "application/json",
+                        "dataType": "json",
+                        success: function(responseData, textStatus, jQxhr){
+                            alert("Registration complete.");
+
+                            var loginfd = new FormData();
+                            loginfd.append( 'username', $("#username").val());
+                            loginfd.append( 'password', $("#password").val());
+
+
+                            $.ajax({
+                                "url": ROOT_PATH + "/login",
+                                "data": loginfd,
+                                "processData": false,
+                                "contentType": false,
+                                "type": "POST",
+                                success: function(data){
+                                    sessionStorage.setItem(SESSION_STORAGE_LOGIN_TOKEN_NAME, responseData.user.username);
+                                    sessionStorage.setItem(SESSION_STORAGE_ROLE_NAME, responseData.user.role);//save user's role
+                                    if(responseData.user.role=="CITIZEN"){
+                                        window.location.replace(ROOT_PATH + "/users/citizen/index.html");
+                                    }else{
+                                        window.location.replace(ROOT_PATH + "/users/doctor/index.html");
+                                    }
+                                },
+                                statusCode: {
+                                    401 : function() {
+                                        alert("Invalid username or password!");
+                                        }
+                                    }
+                                });
+                        },
+                        statusCode: {
+                            409 : function() {
+                                alert("One or more of your credentials (username, email, phone, SSN) already exist.");
+                                }
+                        }
+                    });
 
 		}
 

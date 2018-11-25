@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +37,16 @@ public class CitizenController {
         User loggedInUser = userRepository.findByUsername(principal.getName());
         if (loggedInUser.getRole() == Role.CITIZEN) {
             Citizen citizen = loggedInUser.getCitizen();
+
+            LocalDateTime ldt = LocalDateTime.now();
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String now = format.format(ldt);
+
+            if(newAppointmentDTO.getDate().compareTo(now)<0){
+                throw new AppointmentInPastException();
+
+            }
+
 
             Doctor doctor = doctorRepository.findById(newAppointmentDTO.getDoctorId()).get();
             for (Appointment doctorAppointment : doctor.getAppointments()) {
