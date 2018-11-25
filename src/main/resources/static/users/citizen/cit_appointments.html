@@ -22,6 +22,7 @@
     <link href="../../css/dashboard_style.css" rel="stylesheet">
     <script src="../../js/const.js"></script>
     <script src="../../js/logout.js"></script>
+    <script src="../../js/load_citizen_search_results.js"></script>
 
 </head>
 
@@ -77,33 +78,6 @@
     </div>
 
 </main>
-
-<script>
-			$(document).ready(function() {
-				$('#appointments_table').DataTable( {
-					"ajax": 'appointments.txt',
-					"columnDefs": [
-						{"className": "dt-center", "targets": "my-th-center"},
-						{ "type": "num", "targets": 0 }
-					]
-				} );
-			} );
-			
-			$(document).ready(function() {
-				var table = $('#appointments_table').DataTable();
-				 
-				$('#appointments_table tbody').on('click', 'tr', function () {
-					var data = table.row( this ).data();
-					//alert( 'You clicked on row: '+data[0] );
-					window.location.href = "cit_single_appointment.html?appointment_id="+data[0];
-
-					
-				} );
-			} );
-			
-
-</script>
-
 </body>
 
 </html>

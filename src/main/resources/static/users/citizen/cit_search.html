@@ -20,6 +20,8 @@
     <link href="../../css/dashboard_style.css" rel="stylesheet">
     <script src="../../js/const.js"></script>
     <script src="../../js/logout.js"></script>
+    <script src="../../js/load_specialties.js"></script>
+    <script src="../../js/cit_search_load_specialties.js"></script>
 
 </head>
 
@@ -97,10 +99,7 @@
                 <!--<input type="text" id="search_for" class="form-control" placeholder="eg: Migraines..." autocomplete="off">-->
                 <div class="input-group mb-3">
                     <select class="custom-select" id="specialtySelector">
-                        <option selected>Choose Specialty...</option>
-                        <option value="1">Cardiologist</option>
-                        <option value="2">Microbiologist</option>
-                        <option value="3">Orthopedic</option>
+                        <option value="0" selected>Choose Specialty...</option>
                     </select>
                 </div>
                 <br>
@@ -113,58 +112,6 @@
     </div>
 
 </main>
-
-<script>
-			function showSearchResults() {
-				var dateFrom = $('#date_from').val();
-				/*var dateFrom = new Date($('#date_from').val());
-				if(typeof dateFrom === "undefined"){
-					let today = new Date();
-					
-					let dd = today.getDate();
-					let mm = today.getMonth()+1; //January is 0!
-					let yyyy = today.getFullYear();
-					
-					dateFrom = yyyy + '-' + mm + '-' + dd;
-				}else{
-					let day = dateFrom.getDate();
-					let month = dateFrom.getMonth() + 1;
-					let year = dateFrom.getFullYear();
-					
-					dateFrom = year + '-' + month + '-' + day;
-				}*/
-				
-				var dateTo = $('#date_to').val();
-				/*var dateTo = new Date($('#date_to').val());
-				if(typeof dateTo === "undefined"){
-					//dateFrom +1 month
-					
-				}else{
-					let day = dateTo.getDate();
-					let month = dateTo.getMonth() + 1;
-					let year = dateTo.getFullYear();
-					
-					dateTo = year + '-' + month + '-' + day;
-				}*/
-
-				
-				var selected_specialty = $("#specialtySelector option:selected").text();
-				
-				if (typeof selected_specialty === "undefined") {
-					var myURI = 'from=' + dateFrom + '&to=' + dateTo;
-					var myEncodedURI = encodeURI(myURI);
-				}else {
-					var myURI = 'from=' + dateFrom + '&to=' + dateTo + '&specialty=' + selected_specialty;
-					var myEncodedURI = encodeURI(myURI);
-				}
-				
-				
-				
-				$(location).attr('href','cit_appointments.html?' + myEncodedURI);
-			}
-
-</script>
-
 </body>
 
 </html>

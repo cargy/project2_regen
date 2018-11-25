@@ -114,8 +114,8 @@ public class CitizenController {
                                        Principal principal) {
 
         Appointment appointmentToEdit=appointmentRepository.findById(editAppointmentDTO.getAppointmentId()).get();
-        Doctor doctor = doctorRepository.findById(editAppointmentDTO.getDoctorId())
-                .orElseThrow(() -> new DoctorNotFoundException(editAppointmentDTO.getDoctorId()));
+        Doctor doctor = doctorRepository.findById(appointmentToEdit.getDoctor().getDoctorId())
+                .orElseThrow(() -> new DoctorNotFoundException(appointmentToEdit.getDoctor().getDoctorId()));
 
         User loggedInUser = userRepository.findByUsername(principal.getName());
         if (loggedInUser.getRole() == Role.CITIZEN) {

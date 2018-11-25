@@ -1,26 +1,7 @@
 $(document).ready(function(){
-    $.ajax({
-         "url" : ROOT_PATH + "/api/citizen/specialties",
-         "method" : "GET",
-         "contentType": "application/json",
-         "dataType": "json",
-         success : function(response) {
-             response.forEach(function(specialty){
-                $("#specialty").append(
-                    $(
-                        '<option>',
-                        {
-                            value : specialty.specialtyId,
-                            text : specialty.specialty
-                        }
-                    )
-                );
-             });
-         },
-         error : function(xhr, options, error){
-            console.log(error);
-         }
-    })
+
+    loadSpecialties("specialty");
+
     $("#doctor").prop('disabled', true);
     $("#createAppointmentButton").prop('disabled', true);
     $("#appointmentDateInput").prop('disabled', true);
@@ -102,7 +83,7 @@ $(document).ready(function(){
                     "contentType": "application/json",
                     "dataType": "json",
                     success: function(responseData, textStatus, jQxhr){
-                        alert("Your appointment has already created.")
+                        alert("Your appointment created successfully.")
                     },
                     error : function(xhr, options, error){
                         console.log(error);

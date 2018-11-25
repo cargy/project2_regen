@@ -23,6 +23,8 @@
     <link href="../../css/dashboard_style.css" rel="stylesheet">
     <script src="../../js/const.js"></script>
     <script src="../../js/logout.js"></script>
+    <script src="../../js/cit_edit_appointment.js"></script>
+
 
 </head>
 
@@ -75,19 +77,19 @@
                             <tbody>
                             <tr>
                                 <td>Date:</td>
-                                <td><input type="date" value="2019-12-16"></input></td>
+                                <td><input type="date" id="date"/></td>
                             </tr>
                             <tr>
                                 <td>Time:</td>
-                                <td><input type="text" class="timepicker"/></td>
+                                <td><input type="text" class="timepicker" id="time"/></td>
                             </tr>
                             <tr>
                                 <td>Illness History:</td>
-                                <td><input type="text" placeholder="Eimai ypertasikos"></input></td>
+                                <td><input type="text" id="illness"/></td>
                             </tr>
                             <tr>
                                 <td>Notes:</td>
-                                <td><input type="text" placeholder="Pairnw xapia"></input></td>
+                                <td><input type="text" id="notes"/></td>
                             </tr>
                             </tbody>
                         </table>
@@ -102,7 +104,7 @@
             <div class="col-sm-3"></div>
             <div class="col-sm-6" style="text-align:center;"><br>
                 <button type="button" class="btn btn-secondary" onclick="history.go(-1)">Cancel</button>
-                <button type="button" class="btn btn-success" onclick="submitAppointmentsChanges();">Save</button>
+                <button type="button" class="btn btn-success" onclick="saveChanges();">Save</button>
             </div>
             <div class="col-sm-3"></div>
         </div>

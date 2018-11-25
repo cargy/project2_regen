@@ -21,6 +21,4 @@ public class LoggedInUserController {
         return loggedInUser.getRole();
     }
 
-
-
 }
