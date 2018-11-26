@@ -104,26 +104,26 @@ public class LoadDatabase {
             Citizen citizen9 = new Citizen("Patroklos", "Vasiliadis", "pat@gmail.com", "6976101955", "36985600122", userCit9);
             Citizen citizen10 = new Citizen("Georgios", "Tzinos", "tzinos@gmail.com", "6981254788", "03968574452", userCit10);
 
-            Appointment appointment1 = new Appointment("2018-11-25", "12:30", "Miniskos", "pairnw xapia", doctor1, citizen1);
-            Appointment appointment2 = new Appointment("2018-11-26", "13:30", "Vimatodotis", "",doctor1,citizen2);
-            Appointment appointment3 = new Appointment("2018-12-28", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor1,citizen3);
-            Appointment appointment4 = new Appointment("2018-11-30", "12:30", "Miniskos", "pairnw xapia", doctor1, citizen4);
-            Appointment appointment5 = new Appointment("2018-11-12", "13:30", "Vimatodotis", "",doctor1,citizen5);
-            Appointment appointment6 = new Appointment("2019-02-20", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor2,citizen1);
-            Appointment appointment7 = new Appointment("2018-11-09", "12:30", "Miniskos", "pairnw xapia", doctor3, citizen1);
-            Appointment appointment8 = new Appointment("2018-11-02", "13:30", "Vimatodotis", "",doctor4,citizen4);
-            Appointment appointment9 = new Appointment("2019-02-12", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor5,citizen6);
-            Appointment appointment10 = new Appointment("2018-11-13", "12:30", "Miniskos", "pairnw xapia", doctor5, citizen6);
-            Appointment appointment11 = new Appointment("2018-11-16", "13:30", "Vimatodotis", "",doctor6,citizen6);
-            Appointment appointment12 = new Appointment("2019-02-19", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor8,citizen7);
-            Appointment appointment13 = new Appointment("2018-11-19", "12:30", "Miniskos", "pairnw xapia", doctor6, citizen7);
-            Appointment appointment14 = new Appointment("2018-11-29", "13:30", "Vimatodotis", "",doctor9,citizen8);
-            Appointment appointment15 = new Appointment("2019-02-20", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor9,citizen10);
-            Appointment appointment16 = new Appointment("2018-11-25", "12:30", "Miniskos", "pairnw xapia", doctor10, citizen10);
-            Appointment appointment17 = new Appointment("2018-11-29", "13:30", "Vimatodotis", "",doctor10,citizen10);
-            Appointment appointment18 = new Appointment("2019-02-20", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor11,citizen5);
-            Appointment appointment19 = new Appointment("2018-11-25", "12:30", "Miniskos", "pairnw xapia", doctor13, citizen6);
-            Appointment appointment20 = new Appointment("2018-11-29", "13:30", "Vimatodotis", "",doctor15,citizen7);
+            Appointment appointment1 = new Appointment("2018-12-03", "12:30", "Miniskos", "pairnw xapia", doctor1, citizen1);
+            Appointment appointment2 = new Appointment("2018-12-04", "13:30", "Vimatodotis", "",doctor1,citizen2);
+            Appointment appointment3 = new Appointment("2018-12-05", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor1,citizen1);
+            Appointment appointment4 = new Appointment("2018-12-06", "12:30", "Miniskos", "pairnw xapia", doctor1, citizen2);
+            Appointment appointment5 = new Appointment("2018-12-07", "13:30", "Vimatodotis", "",doctor1,citizen1);
+            Appointment appointment6 = new Appointment("2018-12-08", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor1,citizen2);
+            Appointment appointment7 = new Appointment("2018-12-09", "12:30", "Miniskos", "pairnw xapia", doctor1, citizen1);
+            Appointment appointment8 = new Appointment("2018-12-10", "13:30", "Vimatodotis", "",doctor1,citizen2);
+            Appointment appointment9 = new Appointment("2018-12-11", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor1,citizen1);
+            Appointment appointment10 = new Appointment("2018-12-12", "12:30", "Miniskos", "pairnw xapia", doctor1, citizen2);
+            Appointment appointment11 = new Appointment("2018-12-13", "13:30", "Vimatodotis", "",doctor1,citizen1);
+            Appointment appointment12 = new Appointment("2018-12-14", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor1,citizen2);
+            Appointment appointment13 = new Appointment("2018-12-15", "12:30", "Miniskos", "pairnw xapia", doctor1, citizen1);
+            Appointment appointment14 = new Appointment("2018-12-16", "13:30", "Vimatodotis", "",doctor1,citizen2);
+            Appointment appointment15 = new Appointment("2018-12-17", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor1,citizen1);
+            Appointment appointment16 = new Appointment("2018-12-18", "12:30", "Miniskos", "pairnw xapia", doctor1, citizen2);
+            Appointment appointment17 = new Appointment("2018-12-19", "13:30", "Vimatodotis", "",doctor1,citizen1);
+            Appointment appointment18 = new Appointment("2018-12-20", "18:00", "Eimai ypertasikos", "pairnw xapia",doctor1,citizen2);
+            Appointment appointment19 = new Appointment("2018-12-21", "12:30", "Miniskos", "pairnw xapia", doctor1, citizen1);
+            Appointment appointment20 = new Appointment("2018-12-22", "13:30", "Vimatodotis", "",doctor1,citizen2);
 
 
             logger.info("Preloading " + specialtyRepository.save(specialty1));

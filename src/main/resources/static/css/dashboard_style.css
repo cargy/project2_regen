@@ -39,3 +39,10 @@ select{
     border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgb(140, 140, 140) 48%, rgba(255, 255, 255, 0) 100%);
     border-image-slice: 1;
 }
+
+.editForm{
+    width: -webkit-fill-available;
+    height: 38px;
+    border-radius: 5px;
+    border: 1px;
+}

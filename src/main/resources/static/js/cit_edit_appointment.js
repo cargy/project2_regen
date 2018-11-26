@@ -10,7 +10,7 @@ $(document).ready(function() {
        dataType: 'json',
        contentType: 'application/json',
        success: function(appointment){
-           $('#date').attr("value", appointment.date);
+           $('#date').datepicker().val(appointment.date);//.attr("value", appointment.date);
            $('#time').timepicker("setTime",appointment.time);
            $('#illness').attr("value", appointment.illnessHistory);
            $('#notes').attr("value", appointment.notes);

@@ -7,9 +7,9 @@ $(document).ready(function() {
 
      $.ajax({
         url: ROOT_PATH + "/api/doctor/appointments",
-        data: {"fromDate" : vars[0],
-                "toDate" : vars[1],
-                "search" : vars[2]},
+        data: {"fromDate" : vars["from"],
+                "toDate" : vars["to"],
+                "search" : vars["search_for"]},
         type: "GET",
         dataType: 'json',
         contentType: 'application/json',

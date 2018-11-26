@@ -74,13 +74,13 @@ public class AppointmentController {
 
             if (search.equals("")) {
                 for (Appointment a : appointments) {
-                    if (a.getDate().compareTo(fromDate) > 0 && a.getDate().compareTo(toDate) < 0 && a.getDoctor().getDoctorId() == docId) {
+                    if (a.getDate().compareTo(fromDate) >= 0 && a.getDate().compareTo(toDate) <= 0 && a.getDoctor().getDoctorId() == docId) {
                         response.add(a);
                     }
                 }
             } else {
                 for (Appointment a : appointments) {
-                    if (a.getDate().compareTo(fromDate) > 0 && a.getDate().compareTo(toDate) < 0 && a.getDoctor().getDoctorId() == docId) {
+                    if (a.getDate().compareTo(fromDate) >= 0 && a.getDate().compareTo(toDate) <= 0 && a.getDoctor().getDoctorId() == docId) {
                         if (a.getIllnessHistory().toLowerCase().contains(search.toLowerCase())) {
                             response.add(a);
                         }
@@ -137,14 +137,14 @@ public class AppointmentController {
             }
             if (specialty.equals("")) {
                 for (Appointment a : appointments) {
-                    if (a.getDate().compareTo(fromDate) > 0 && a.getDate().compareTo(toDate) < 0 && a.getCitizen().getCitizenId() == citId) {
+                    if (a.getDate().compareTo(fromDate) >= 0 && a.getDate().compareTo(toDate) <= 0 && a.getCitizen().getCitizenId() == citId) {
                         response.add(a);
                     }
                 }
             } else {
                 for (Appointment a : appointments) {
-                    if (a.getDate().compareTo(fromDate) > 0 && a.getDate().compareTo(toDate) < 0 && a.getCitizen().getCitizenId() == citId) {
-                        if (a.getDoctor().getSpecialty().equals(specialty)) {
+                    if (a.getDate().compareTo(fromDate) >= 0 && a.getDate().compareTo(toDate) <= 0 && a.getCitizen().getCitizenId() == citId) {
+                        if (a.getDoctor().getSpecialty().getSpecialtyId()==Long.parseLong(specialty)) {
                             response.add(a);
                         }
                     }
