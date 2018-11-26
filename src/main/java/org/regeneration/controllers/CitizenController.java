@@ -42,11 +42,13 @@ public class CitizenController {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String now = format.format(ldt);
 
-            if(newAppointmentDTO.getDate().compareTo(now)<0){
-                throw new AppointmentInPastException();
-
+            if(newAppointmentDTO.getDoctorId()==0){
+                throw new DoctorNotFoundException(0L);
             }
 
+            if(newAppointmentDTO.getDate().compareTo(now)<0){
+                throw new AppointmentInPastException();
+            }
 
             Doctor doctor = doctorRepository.findById(newAppointmentDTO.getDoctorId()).get();
             for (Appointment doctorAppointment : doctor.getAppointments()) {

@@ -73,7 +73,7 @@ $(document).ready(function(){
 
         var requestData = JSON.stringify(object);
 
-        if($("#appointmentDateInput").val() != "" && $("#appointmentTimeInput").val() != "") {
+        if($("#appointmentDateInput").val() != "" && $("#appointmentTimeInput").val() != "" && $("#doctor").val() > 0) {
 
             $.ajax({
                     "url": ROOT_PATH + "/api/citizen/appointment",
@@ -90,7 +90,7 @@ $(document).ready(function(){
                     }
            });
         } else {
-          alert("Please fill the fields date and time which are necessary!")
+          alert("Please fill the fields date, time and doctor which are required!")
         }
     });
 });
