@@ -16,7 +16,7 @@ $(document).ready(function() {
         success: function(appointments){
             var table = $('#appointments_table').DataTable( {
                  "data": appointments,
-                 "order": [[ 1, "desc" ]],
+                 "order": [[ 1, "asc" ]],
                  "columns": [
                       { "data" : "appointmentId"},
                       { "data" : "date"},

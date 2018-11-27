@@ -19,15 +19,15 @@ public class Citizen implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long citizenId;
 
     @NotNull
-    @Column(name = "firstname", nullable = false)
+    @Column(name = "firstname", length = 50, nullable = false)
     private String firstname;
 
     @NotNull
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "lastname", length = 50, nullable = false)
     private String lastname;
 
     @NotNull

@@ -20,4 +20,19 @@ $(document).ready(function() {
            history.go(-1);
        }
     });
+
+    $("#deleteButton").on('click', function(){
+         $.ajax({
+            "url": ROOT_PATH + "/api/citizen/appointment/" + vars["appointment_id"],
+            "method": "DELETE",
+            success: function(responseData, textStatus, jQxhr){
+                alert("Appointment deleted.");
+                window.location.href = "cit_index.html";
+            },
+            error : function(xhr, options, error){
+                console.log(error);
+            }
+         });
+    });
+
 });

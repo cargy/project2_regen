@@ -4,14 +4,19 @@ import org.regeneration.dto.EditAppointmentDTO;
 import org.regeneration.dto.NewAppointmentDTO;
 import org.regeneration.exceptions.*;
 import org.regeneration.models.*;
-import org.regeneration.repositories.*;
+import org.regeneration.repositories.AppointmentRepository;
+import org.regeneration.repositories.DoctorRepository;
+import org.regeneration.repositories.SpecialtyRepository;
+import org.regeneration.repositories.UserRepository;
 import org.regeneration.security.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,11 +29,9 @@ public class CitizenController {
     @Autowired
     DoctorRepository doctorRepository;
     @Autowired
-    CitizenRepository citizenRepository;
+    UserRepository userRepository;
     @Autowired
     SpecialtyRepository specialtyRepository;
-    @Autowired
-    UserRepository userRepository;
 
 
     @PostMapping("/api/citizen/appointment")
@@ -42,11 +45,11 @@ public class CitizenController {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String now = format.format(ldt);
 
-            if(newAppointmentDTO.getDoctorId()==0){
+            if (newAppointmentDTO.getDoctorId() == 0) {
                 throw new DoctorNotFoundException(0L);
             }
 
-            if(newAppointmentDTO.getDate().compareTo(now)<0){
+            if (newAppointmentDTO.getDate().compareTo(now) < 0) {
                 throw new AppointmentInPastException();
             }
 
@@ -73,27 +76,6 @@ public class CitizenController {
         return null;
     }
 
-    @GetMapping("/api/citizen/specialties")
-    public List<Specialty> getSpecialties() {
-        return specialtyRepository.findAll();
-    }
-
-    @GetMapping("/api/citizen/doctor/{specialtyId}")
-    public List<Doctor> getDoctors(@PathVariable Long specialtyId) {
-        List<Doctor> doctors = new ArrayList<Doctor>();
-        Optional<Specialty> specialtyOptional = specialtyRepository.findById(specialtyId);
-        if (specialtyOptional.isPresent()) {
-            Specialty specialty = specialtyOptional.get();
-            doctors = doctorRepository.findBySpecialty(specialty);
-            if (!doctors.isEmpty()) {
-                return doctors;
-            } else {
-                throw new DoctorWithSelectedSpecilatyNotFoundException(specialty.getSpecialty());
-            }
-        } else {
-            throw new SpecialtyNotFoundException(specialtyId);
-        }
-    }
 
     @GetMapping("/api/citizen/appointment/{id}")
     public Appointment getAppointmentById(@PathVariable Long id) {
@@ -115,7 +97,7 @@ public class CitizenController {
     public Appointment editAppointment(@RequestBody EditAppointmentDTO editAppointmentDTO,
                                        Principal principal) {
 
-        Appointment appointmentToEdit=appointmentRepository.findById(editAppointmentDTO.getAppointmentId()).get();
+        Appointment appointmentToEdit = appointmentRepository.findById(editAppointmentDTO.getAppointmentId()).get();
         Doctor doctor = doctorRepository.findById(appointmentToEdit.getDoctor().getDoctorId())
                 .orElseThrow(() -> new DoctorNotFoundException(appointmentToEdit.getDoctor().getDoctorId()));
 
@@ -144,6 +126,74 @@ public class CitizenController {
 
             appointmentRepository.save(appointmentToEdit);
             return appointmentToEdit;
+        }
+        return null;
+    }
+
+    @GetMapping("/api/citizen/specialties")
+    public List<Specialty> getSpecialties() {
+        return specialtyRepository.findAll();
+    }
+
+    @GetMapping("/api/citizen/doctor/{specialtyId}")
+    public List<Doctor> getDoctors(@PathVariable Long specialtyId) {
+        List<Doctor> doctors = new ArrayList<Doctor>();
+        Optional<Specialty> specialtyOptional = specialtyRepository.findById(specialtyId);
+        if (specialtyOptional.isPresent()) {
+            Specialty specialty = specialtyOptional.get();
+            doctors = doctorRepository.findBySpecialty(specialty);
+            if (!doctors.isEmpty()) {
+                return doctors;
+            } else {
+                throw new DoctorWithSelectedSpecilatyNotFoundException(specialty.getSpecialty());
+            }
+        } else {
+            throw new SpecialtyNotFoundException(specialtyId);
+        }
+    }
+
+
+    @GetMapping("/api/citizen/appointments")
+    public List<Appointment> getCitAppointments(@RequestParam(value = "fromDate", defaultValue = "") String fromDate,
+                                                @RequestParam(value = "toDate", defaultValue = "") String toDate,
+                                                @RequestParam(value = "specialty", defaultValue = "") String specialty,
+                                                Principal principal) {
+
+        User loggedInUser = userRepository.findByUsername(principal.getName());
+        if (loggedInUser.getRole() == Role.CITIZEN) {
+            Long citId = loggedInUser.getCitizen().getCitizenId();
+            List<Appointment> appointments = appointmentRepository.findAll();
+            List<Appointment> response = new ArrayList<>();
+            if (fromDate.equals("")) {
+                LocalDateTime ldt = LocalDateTime.now();
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                String now = format.format(ldt);
+                fromDate = now;
+            }
+            if (toDate.equals("")) {
+                //from+1 month
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                TemporalAccessor date = formatter.parse(fromDate);
+                LocalDate ldt = LocalDate.from(date).plusMonths(1L);
+                String fromDatePlusOneMonth = formatter.format(ldt);
+                toDate = fromDatePlusOneMonth;
+            }
+            if (specialty.equals("")) {
+                for (Appointment a : appointments) {
+                    if (a.getDate().compareTo(fromDate) >= 0 && a.getDate().compareTo(toDate) <= 0 && a.getCitizen().getCitizenId() == citId) {
+                        response.add(a);
+                    }
+                }
+            } else {
+                for (Appointment a : appointments) {
+                    if (a.getDate().compareTo(fromDate) >= 0 && a.getDate().compareTo(toDate) <= 0 && a.getCitizen().getCitizenId() == citId) {
+                        if (a.getDoctor().getSpecialty().getSpecialtyId() == Long.parseLong(specialty)) {
+                            response.add(a);
+                        }
+                    }
+                }
+            }
+            return response;
         }
         return null;
     }

@@ -18,7 +18,7 @@ public class Specialty implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long specialtyId;
 
     @Size(max = 50)

@@ -16,7 +16,7 @@ public class LoggedInUserController {
     UserRepository userRepository;
 
     @GetMapping("/api/user")
-    public Role userRole(Principal principal){
+    public Role userRole(Principal principal) {
         User loggedInUser = userRepository.findByUsername(principal.getName());
         return loggedInUser.getRole();
     }
