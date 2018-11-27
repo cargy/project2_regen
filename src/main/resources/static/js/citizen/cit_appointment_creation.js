@@ -70,28 +70,36 @@ $(document).ready(function(){
             'illnessHistory' : $("#appointmentIllnessHistoryInput").val(),
             'notes' : $("#appointmentNotesInput").val()
         };
+        console.log(object);
 
         var requestData = JSON.stringify(object);
+        console.log(requestData);
 
-        if($("#appointmentDateInput").val() != "" && $("#appointmentTimeInput").val() != "" && $("#doctor").val() > 0) {
-
-            $.ajax({
-                    "url": ROOT_PATH + "/api/citizen/appointment",
-                    "method": "POST",
-                    "processData": false,
-                    "data": requestData,
-                    "contentType": "application/json",
-                    "dataType": "json",
-                    success: function(responseData, textStatus, jQxhr){
-                        alert("Your appointment created successfully.")
-                        window.location.replace(ROOT_PATH + "/users/citizen/index.html");
-                    },
-                    error : function(xhr, options, error){
-                        console.log(error);
-                    }
-           });
+        var selectedDate=$("#appointmentDateInput").val().split("-");
+        var dateInput = new Date(selectedDate[0], selectedDate[1]-1,selectedDate[2]);//todo chara
+        if($("#appointmentDateInput").val() != ""&& $("#appointmentTimeInput").val() != "" && $("#doctor").val() > 0) {
+            if(dateInput>=new Date()) {
+                $.ajax({
+                        "url": ROOT_PATH + "/api/citizen/appointment",
+                        "method": "POST",
+                        "processData": false,
+                        "data": requestData,
+                        "contentType": "application/json",
+                        "dataType": "json",
+                        success: function(responseData, textStatus, jQxhr){
+                            alert("Your appointment created successfully.")
+                        },
+                        error : function(xhr, options, error){
+                            console.log("error");
+                            console.log(error);
+                        }
+               });
+            } else{
+               alert("Enter a date in the future")
+            }
         } else {
           alert("Please fill the fields date, time and doctor which are required!")
         }
+
     });
 });
