@@ -37,7 +37,7 @@ public class CitizenService {
 
 
 
-    @PreAuthorize("hasRole.role('ROLE_CITIZEN')")
+    @PreAuthorize("hasRole('ROLE_CITIZEN')")
     public Appointment createCitizenAppointment(@RequestBody NewAppointmentDTO newAppointmentDTO, Principal principal) {
         Appointment appointment = new Appointment();
         User loggedInUser = userRepository.findByUsername(principal.getName());
@@ -79,21 +79,21 @@ public class CitizenService {
         return null;
     }
 
-    @PreAuthorize("hasRole.role('ROLE_CITIZEN')")
+    @PreAuthorize("hasRole('ROLE_CITIZEN')")
     public Appointment getAppointmentById(@PathVariable Long id) {
         return appointmentRepository.findById(id)
                 .orElseThrow(() -> new AppointmentNotFoundException(id));
 
     }
 
-    @PreAuthorize("hasRole.role('ROLE_CITIZEN')")
+    @PreAuthorize("hasRole('ROLE_CITIZEN')")
     public void deleteAppointmentById(@PathVariable Long appointmentId) {
 
         getAppointmentById(appointmentId);
         appointmentRepository.deleteById(appointmentId);
 
     }
-    @PreAuthorize("hasRole.role('ROLE_CITIZEN')")
+    @PreAuthorize("hasRole('ROLE_CITIZEN')")
     public Appointment editAppointment(@RequestBody EditAppointmentDTO editAppointmentDTO, Principal principal) {
 
         Appointment appointmentToEdit = appointmentRepository.findById(editAppointmentDTO.getAppointmentId()).get();
@@ -128,11 +128,12 @@ public class CitizenService {
         }
         return null;
     }
-    @PreAuthorize("hasRole.role('ROLE_CITIZEN')")
+    @PreAuthorize("hasRole('ROLE_CITIZEN')")
     public List<Specialty> getSpecialties() {
         return specialtyRepository.findAll();
     }
-    @PreAuthorize("hasRole('CITIZEN')")
+
+    @PreAuthorize("hasRole('ROLE_CITIZEN')")
     public List<Doctor> getDoctors(@PathVariable Long specialtyId) {
         List<Doctor> doctors = new ArrayList<Doctor>();
         Optional<Specialty> specialtyOptional = specialtyRepository.findById(specialtyId);
@@ -149,7 +150,7 @@ public class CitizenService {
         }
     }
 
-    @PreAuthorize("hasRole.role('ROLE_CITIZEN')")
+    @PreAuthorize("hasRole('ROLE_CITIZEN')")
     public List<Appointment> getCitAppointments(@RequestParam(value = "fromDate", defaultValue = "") String fromDate,
                                                 @RequestParam(value = "toDate", defaultValue = "") String toDate,
                                                 @RequestParam(value = "specialty", defaultValue = "") String specialty,
