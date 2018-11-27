@@ -16,6 +16,7 @@ $(document).ready(function() {
         success: function(appointments){
             var table = $('#appointments_table').DataTable( {
                  "data": appointments,
+                 "order": [[ 1, "desc" ]],
                  "columns": [
                       { "data" : "appointmentId"},
                       { "data" : "date"},
@@ -23,7 +24,8 @@ $(document).ready(function() {
                  ],
                  "columnDefs": [
                     {"className": "dt-center", "targets": "my-th-center"},
-                    {"type": "num", "targets": 0 }
+                    {"type": "num", "targets": 0 },
+                    {"width": "150", "targets": 0}
                  ],
                  "language": {"emptyTable": "No appointments available to display."}
             });

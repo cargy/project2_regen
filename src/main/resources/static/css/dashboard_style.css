@@ -45,4 +45,14 @@ select{
     height: 38px;
     border-radius: 5px;
     border: 1px;
+    padding: 8px;
+}
+
+#appointments_table_wrapper{
+    width:95%;
+}
+
+#signoutLabel{
+    margin: auto;
+    padding: 0px 16px;
 }

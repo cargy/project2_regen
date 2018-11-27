@@ -17,6 +17,8 @@
     <link href="../../css/libraries/bootstrap.min.css" rel="stylesheet">
     <link href="../../css/libraries/fontawesome-free.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/libraries/jquery.timepicker.min.css">
+    <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <script src="../../js/libraries/jquery.timepicker.min.js"></script>
 
     <!-- Custom stylesheet + js-->
@@ -94,19 +96,19 @@
                             </tr>
                             <tr>
                                 <td>Date:</td>
-                                <td><input type="date" id="appointmentDateInput" required="true"></input></td>
+                                <td><input onkeydown="return false" id="appointmentDateInput" required="true"></input></td>
                             </tr>
                             <tr>
                                 <td>Time:</td>
-                                <td><input type="text" class="timepicker" id="appointmentTimeInput" required="true"/></td>
+                                <td><input type="text" class="timepicker editForm" id="appointmentTimeInput" required="true"/></td>
                             </tr>
                             <tr>
                                 <td>Illness History:</td>
-                                <td><input type="text" placeholder="Eimai ypertasikos" id="appointmentIllnessHistoryInput"></input></td>
+                                <td><input type="text" class="editForm" id="appointmentIllnessHistoryInput"></input></td>
                             </tr>
                             <tr>
                                 <td>Notes:</td>
-                                <td><input type="text" placeholder="Pairnw xapia" id="appointmentNotesInput"></input></td>
+                                <td><input type="text" class="editForm" id="appointmentNotesInput"></input></td>
                             </tr>
                             </tbody>
                         </table>
@@ -144,6 +146,11 @@
 			dropdown: true,
 			scrollbar: true
 		});
+
+		$('#appointmentDateInput').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'yyyy-mm-dd',
+        });
 
 </script>
 

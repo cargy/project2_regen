@@ -84,6 +84,7 @@ $(document).ready(function(){
                     "dataType": "json",
                     success: function(responseData, textStatus, jQxhr){
                         alert("Your appointment created successfully.")
+                        window.location.replace(ROOT_PATH + "/users/citizen/index.html");
                     },
                     error : function(xhr, options, error){
                         console.log(error);

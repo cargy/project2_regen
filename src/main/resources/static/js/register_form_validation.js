@@ -183,6 +183,9 @@ $(document).ready(function() {
                         "data": requestData,
                         "contentType": "application/json",
                         "dataType": "json",
+                        beforeSend: function() {
+                            $('#loading').html("<img src='../images/loading.gif'/>");
+                        },
                         success: function(responseData, textStatus, jQxhr){
                             alert("Registration complete.");
 
@@ -200,6 +203,7 @@ $(document).ready(function() {
                                 success: function(data){
                                     sessionStorage.setItem(SESSION_STORAGE_LOGIN_TOKEN_NAME, responseData.user.username);
                                     sessionStorage.setItem(SESSION_STORAGE_ROLE_NAME, responseData.user.role);//save user's role
+                                    $('#loading').html("");
                                     if(responseData.user.role=="CITIZEN"){
                                         window.location.replace(ROOT_PATH + "/users/citizen/index.html");
                                     }else{
@@ -208,6 +212,7 @@ $(document).ready(function() {
                                 },
                                 statusCode: {
                                     401 : function() {
+                                        $('#loading').html("");
                                         alert("Invalid username or password!");
                                         }
                                     }
@@ -215,6 +220,7 @@ $(document).ready(function() {
                         },
                         statusCode: {
                             409 : function() {
+                                $('#loading').html("");
                                 alert("One or more of your credentials (username, email, phone, SSN) already exist.");
                                 }
                         }
