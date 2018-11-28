@@ -56,3 +56,30 @@ select{
     margin: auto;
     padding: 0px 16px;
 }
+
+.dropdown-menu::after {
+    position: absolute;
+    top: -6px;
+    right: 10px;
+    left: auto;
+    display: inline-block;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid white;
+    border-left: 6px solid transparent;
+    content: '';
+}
+
+.dropdown-menu {
+    left: auto;
+    right: 0;
+    margin-top: 4px;
+}
+
+input[type="text"]:disabled {
+    background: #e9ecef;
+    border: 1px solid #ced4da;
+}
+
+input[type="text"] {
+    border: 1px solid #ced4da;
+}
