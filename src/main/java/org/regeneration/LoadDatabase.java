@@ -5,6 +5,7 @@ import org.regeneration.repositories.*;
 import org.regeneration.security.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +16,8 @@ public class LoadDatabase {
 
 
     private static final Logger logger = LoggerFactory.getLogger(LoadDatabase.class);
-
+    @Value("${load.data.to.db}")
+    private String LOAD_DATA;
     @Bean
     CommandLineRunner initDatabase(UserRepository userRepository,
                                    PasswordEncoder passwordEncoder,
@@ -23,8 +25,7 @@ public class LoadDatabase {
                                    AppointmentRepository appointmentRepository,
                                    SpecialtyRepository specialtyRepository,
                                    CitizenRepository citizenRepository) {
-
-        if (!userRepository.existsById(1l)) {
+        if (Boolean.valueOf(LOAD_DATA)) {
             return args -> {
                 //Folding users (Role=Doctor)
                 User userDoc1 = new User("doc1", passwordEncoder.encode("doc1password"), Role.DOCTOR);

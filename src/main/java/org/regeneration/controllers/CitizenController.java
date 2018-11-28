@@ -7,6 +7,7 @@ import org.regeneration.models.Doctor;
 import org.regeneration.models.Specialty;
 import org.regeneration.services.CitizenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -41,7 +42,8 @@ public class CitizenController {
     }
 
     @GetMapping("/api/citizen/specialties")
-    public List<Specialty> getSpecialties() {
+    public List<Specialty> getSpecialties(Authentication authentication) {
+        System.out.println("chara"+authentication.getAuthorities());
         return citizenService.getSpecialties();
     }
 

@@ -36,7 +36,7 @@ public class DoctorService {
     @Autowired
     CitizenRepository citizenRepository;
 
-    @PreAuthorize("hasRole('ROLE_DOCTOR')")
+    @PreAuthorize("hasRole('DOCTOR')")
     public List<Appointment> getAppointments(@RequestParam(value = "fromDate", defaultValue = "") String fromDate,
                                              @RequestParam(value = "toDate", defaultValue = "") String toDate,
                                              @RequestParam(value = "search", defaultValue = "") String search,
@@ -91,13 +91,13 @@ public class DoctorService {
         return null;
     }
 
-    @PreAuthorize("hasRole('ROLE_DOCTOR')")
+    @PreAuthorize("hasRole('DOCTOR')")
     public Appointment doctorGetAppointment(@PathVariable Long id) {
         return appointmentRepository.findById(id)
                 .orElseThrow(() -> new AppointmentNotFoundException(id));
     }
 
-    @PreAuthorize("hasRole('ROLE_DOCTOR')")
+    @PreAuthorize("hasRole('DOCTOR')")
     public Citizen getCitizen(@PathVariable Long id) {
         return citizenRepository.findById(id)
                 .orElseThrow(() -> new CitizenNotFoundException(id));

@@ -2,6 +2,7 @@ package org.regeneration.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.regeneration.security.Role;
 
@@ -27,6 +28,7 @@ public class User implements Serializable {
     @Column(name = "username", length = 50, nullable = false, unique = true)
     private String username;
 
+    @JsonIgnore
     @Column(name = "password")
     private String password;
 

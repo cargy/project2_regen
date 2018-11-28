@@ -73,12 +73,14 @@ $(document).ready(function(){
         console.log(object);
 
         var requestData = JSON.stringify(object);
-        console.log(requestData);
+
 
         var selectedDate=$("#appointmentDateInput").val().split("-");
-        var dateInput = new Date(selectedDate[0], selectedDate[1]-1,selectedDate[2]);//todo chara
+        var selectedTime=$("#appointmentTimeInput").val().split(":")
+        var dateInput = new Date(selectedDate[0],selectedDate[1]-1,selectedDate[2], selectedTime[0],selectedTime[1],0);
+
         if($("#appointmentDateInput").val() != ""&& $("#appointmentTimeInput").val() != "" && $("#doctor").val() > 0) {
-            if(dateInput>=new Date()) {
+            if(dateInput >= new Date()) {
                 $.ajax({
                         "url": ROOT_PATH + "/api/citizen/appointment",
                         "method": "POST",
@@ -100,6 +102,6 @@ $(document).ready(function(){
         } else {
           alert("Please fill the fields date, time and doctor which are required!")
         }
+      });
 
     });
-});
