@@ -2,6 +2,7 @@ package org.regeneration.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.regeneration.security.Role;
 
@@ -19,7 +20,7 @@ public class User implements Serializable {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     @NotNull
@@ -27,6 +28,7 @@ public class User implements Serializable {
     @Column(name = "username", length = 50, nullable = false, unique = true)
     private String username;
 
+    @JsonIgnore
     @Column(name = "password")
     private String password;
 
@@ -102,7 +104,11 @@ public class User implements Serializable {
         this.citizen = citizen;
     }
 
-    public Role getRole() {return role;}
+    public Role getRole() {
+        return role;
+    }
 
-    public void setRole(Role role) {this.role = role;}
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }

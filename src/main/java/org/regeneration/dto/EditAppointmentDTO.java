@@ -3,8 +3,6 @@ package org.regeneration.dto;
 public class EditAppointmentDTO {
 
     private Long appointmentId;
-    private Long specialtyId;
-    private Long doctorId;
     private String date;
     private String time;
     private String illnessHistory;
@@ -16,22 +14,6 @@ public class EditAppointmentDTO {
 
     public void setAppointmentId(Long appointmentId) {
         this.appointmentId = appointmentId;
-    }
-
-    public Long getSpecialtyId() {
-        return specialtyId;
-    }
-
-    public void setSpecialtyId(Long specialtyId) {
-        this.specialtyId = specialtyId;
-    }
-
-    public Long getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(Long doctorId) {
-        this.doctorId = doctorId;
     }
 
     public String getDate() {
@@ -70,8 +52,6 @@ public class EditAppointmentDTO {
     public String toString() {
         return "EditAppointmentDTO{" +
                 "appointmentId=" + appointmentId +
-                ", specialtyId=" + specialtyId +
-                ", doctorId=" + doctorId +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
                 ", illnessHistory='" + illnessHistory + '\'' +

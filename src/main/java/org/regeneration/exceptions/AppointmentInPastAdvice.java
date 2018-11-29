@@ -6,14 +6,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ControllerAdvice
-public class UsernameExistsAdvice {
 
+@ControllerAdvice
+public class AppointmentInPastAdvice {
     @ResponseBody
-    @ExceptionHandler(UsernameExistsException.class)
-    @ResponseStatus(HttpStatus.CONFLICT)
-    String usernameExistsHandler(UsernameExistsException ex){
+    @ExceptionHandler(AppointmentInPastException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    String appointmentInPastHandler(AppointmentInPastException ex) {
         return ex.getMessage();
     }
-
 }
+
+

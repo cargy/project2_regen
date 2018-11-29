@@ -11,7 +11,9 @@ public class CitizenAppointmentConflictAdvice {
     @ResponseBody
     @ExceptionHandler(CitizenAppointmentConflictException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    String citizenNotFoundHandler(CitizenAppointmentConflictException ex) { return ex.getMessage();}
+    String citizenNotFoundHandler(CitizenAppointmentConflictException ex) {
+        return ex.getMessage();
+    }
 
 }
 
